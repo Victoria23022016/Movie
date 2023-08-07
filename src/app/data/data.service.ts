@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import {
   Film,
   Genres,
@@ -5,6 +6,7 @@ import {
   RecommendatedFilm,
 } from './interfaces.service';
 
+@Injectable({ providedIn: 'root' })
 export class DataService {
   genres: Array<Genres> = [
     { id: 28, name: 'Action' },
@@ -370,4 +372,7 @@ export class DataService {
       vote_count: 2624,
     },
   ];
+  getById(id: number) {
+    return this.popularFilms.find((el) => el.id === id);
+  }
 }

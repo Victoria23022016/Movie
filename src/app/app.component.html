@@ -1,11 +1,13 @@
-<h1>Movie catalog</h1>
+<nav class="navbar">
+  <ul>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <a [routerLink]="['/']">Go to home page</a>
+    </li>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/favourites']">Go to favourites</a>
+    </li>
+  </ul>
+</nav>
 <div class="container">
-  <app-search-form></app-search-form>
-  <div class="container" *ngIf="popularFilms.length">
-    <app-posts
-      *ngFor="let post of popularFilms"
-      [film]="post"
-      [genres]="genres"
-    ></app-posts>
-  </div>
+  <router-outlet></router-outlet>
 </div>
