@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Film, Genres } from '../data/interfaces.service';
 import { Input } from '@angular/core';
 import { DataService } from '../data/data.service';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-posts',
@@ -10,7 +9,9 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./posts.component.scss'],
 })
 export class PostsComponent implements OnInit {
-  constructor(public DataService: DataService, private http: HttpClient) {}
+  @Output() popularFilms: any; //поменять тип данных
+
+  constructor(public DataService: DataService) {}
 
   findGengesById(arr: Film): Array<string> {
     let names = [];
@@ -24,12 +25,10 @@ export class PostsComponent implements OnInit {
     return names;
   }
   ngOnInit(): void {
-    this.http
-      .get<Film[]>(
-        'https://api.themoviedb.org/3/movie/popular?api_key=ba5272b504616d17b0eb3ab1fc040852'
-      )
-      .subscribe((response) => {
-        console.log('Response', response);
-      });
+    this.DataService.getPopularFilms().subscribe((response) => {
+      this.popularFilms = response.results;
+      this.DataService.transitPopularFilms(this.popularFilms);
+      console.log('Данные отправлены', this.popularFilms);
+    });
   }
 }

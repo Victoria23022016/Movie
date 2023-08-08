@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="card" *ngFor="let film of DataService.popularFilms">
+  <div class="card" *ngFor="let film of popularFilms">
     <a [routerLink]="['/detailed', film.id]">
       <h1>{{ film.title }}</h1>
       <p>Description: {{ film.overview }}</p>
@@ -7,5 +7,4 @@
       <span>{{ this.findGengesById(film) }}</span>
     </a>
   </div>
-  <!--<div>{{resp}}</div>-->
 </div>

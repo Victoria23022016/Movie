@@ -48,7 +48,7 @@ export interface Film {
   vote_count: number;
 }
 
-export interface RecommendatedFilm {
+export interface ReccomendatedFilm {
   adult: boolean;
   backdrop_path: any;
   id: number;

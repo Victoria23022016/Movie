@@ -4,7 +4,7 @@ import {
   Genres,
   DetailedFilm,
   Film,
-  RecommendatedFilm,
+  ReccomendatedFilm,
 } from './data/interfaces.service';
 
 @Component({

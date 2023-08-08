@@ -3,11 +3,17 @@ import {
   Film,
   Genres,
   DetailedFilm,
-  RecommendatedFilm,
+  ReccomendatedFilm,
 } from './interfaces.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
+  constructor(public http: HttpClient) {}
+  popularFilmsSubject$: Subject<any> = new Subject<any>();
+
   genres: Array<Genres> = [
     { id: 28, name: 'Action' },
     { id: 12, name: 'Adventure' },
@@ -29,14 +35,25 @@ export class DataService {
     { id: 10752, name: 'War' },
     { id: 37, name: 'Western' },
   ];
-  popularFilms: Array<Film> = [
+
+  transitPopularFilms(data: Array<Film>) {
+    this.popularFilmsSubject$.next(data);
+    console.log('Транзит', data);
+  }
+
+  getPopularFilms(): Observable<any> {
+    return this.http.get<any>( //переделать под нормальный тип данных
+      'https://api.themoviedb.org/3/movie/popular?api_key=ba5272b504616d17b0eb3ab1fc040852'
+    );
+  }
+  /*popularFilms: Array<Film> = [
     {
       adult: false,
       backdrop_path: '/nHf61UzkfFno5X1ofIhugCPus2R.jpg',
       genre_ids: [35, 12, 14],
       id: 346698,
       original_language: 'en',
-      original_title: 'Barbie',
+      original_title: 'Barbarellla',
       overview:
         'Barbie and Ken are having the time of their lives in the colorful and seemingly perfect world of Barbie Land. However, when they get a chance to go to the real world, they soon discover the joys and perils of living among humans.',
       popularity: 3447.567,
@@ -371,8 +388,13 @@ export class DataService {
       vote_average: 8.5,
       vote_count: 2624,
     },
-  ];
-  getById(id: number) {
-    return this.popularFilms.find((el) => el.id === id);
+  ];*/
+  getById(id: number, arr: any) {
+    return arr.find((el: any) => el.id === id);
+  }
+  getReccomendations(id: number): Observable<any> {
+    return this.http.get<any>(
+      `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=ba5272b504616d17b0eb3ab1fc040852`
+    );
   }
 }
