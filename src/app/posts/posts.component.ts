@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { Film, Genres } from '../data/interfaces.service';
 import { Input } from '@angular/core';
 import { DataService } from '../data/data.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-posts',
@@ -9,26 +10,29 @@ import { DataService } from '../data/data.service';
   styleUrls: ['./posts.component.scss'],
 })
 export class PostsComponent implements OnInit {
-  @Output() popularFilms: any; //поменять тип данных
+  popularFilms: any; //поменять тип данных
+  genres: any; //поменять тип данных
 
   constructor(public DataService: DataService) {}
 
-  findGengesById(arr: Film): Array<string> {
-    let names = [];
-    for (let genre_ids of arr.genre_ids) {
-      names.push(
-        this.DataService.genres[
-          this.DataService.genres.findIndex((el) => el.id == genre_ids)
-        ].name
-      );
+  findGenresById(arr: Film): any {
+    if (this.popularFilms) {
+      let names = [];
+      for (let genre_ids of arr.genre_ids) {
+        names.push(
+          this.genres[this.genres.findIndex((el: any) => el.id == genre_ids)]
+            .name
+        );
+      }
+      return names;
     }
-    return names;
   }
   ngOnInit(): void {
     this.DataService.getPopularFilms().subscribe((response) => {
       this.popularFilms = response.results;
-      this.DataService.transitPopularFilms(this.popularFilms);
-      console.log('Данные отправлены', this.popularFilms);
+    });
+    this.DataService.getGenres().subscribe((response) => {
+      this.genres = response.genres;
     });
   }
 }

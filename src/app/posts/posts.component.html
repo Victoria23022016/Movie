@@ -4,7 +4,7 @@
       <h1>{{ film.title }}</h1>
       <p>Description: {{ film.overview }}</p>
       <p>Release date: {{ film.release_date | date : "shortDate" }}</p>
-      <span>{{ this.findGengesById(film) }}</span>
+      <div *ngIf="this.genres">{{ this.findGenresById(film) }}</div>
     </a>
   </div>
 </div>
