@@ -12,7 +12,6 @@ import { Subject } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class DataService {
   constructor(public http: HttpClient) {}
-  popularFilmsSubject$: Subject<any> = new Subject<any>();
 
   genres: Array<Genres> = [
     { id: 28, name: 'Action' },
@@ -35,11 +34,6 @@ export class DataService {
     { id: 10752, name: 'War' },
     { id: 37, name: 'Western' },
   ];
-
-  transitPopularFilms(data: Array<Film>) {
-    this.popularFilmsSubject$.next(data);
-    console.log('Транзит', data);
-  }
 
   getPopularFilms(): Observable<any> {
     return this.http.get<any>( //переделать под нормальный тип данных
@@ -389,8 +383,11 @@ export class DataService {
       vote_count: 2624,
     },
   ];*/
-  getById(id: number, arr: any) {
-    return arr.find((el: any) => el.id === id);
+  getById(id: number) {
+    return this.http.get<any>(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=ba5272b504616d17b0eb3ab1fc040852`
+    );
+    /*return arr.find((el: any) => el.id === id);*/
   }
   getReccomendations(id: number): Observable<any> {
     return this.http.get<any>(
