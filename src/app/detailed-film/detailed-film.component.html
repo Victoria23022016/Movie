@@ -4,7 +4,13 @@
     <p>Description: {{ this.film.overview }}</p>
     <p>Rating: {{ this.film.vote_average }}</p>
     <p>Popularity: {{ this.film.popularity }}</p>
-    <button class="btn">Add to Favourites</button>
+    <button
+      class="btn"
+      (click)="AddToFavourites(this.film)"
+      [ngClass]="{ activated: activatedBtn, notactivated: !activatedBtn }"
+    >
+      Add to Favourites
+    </button>
   </div>
   <app-recommendated [film]="film"></app-recommendated>
 </ng-container>

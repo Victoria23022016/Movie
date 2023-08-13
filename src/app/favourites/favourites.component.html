@@ -1,1 +1,9 @@
-<p>favourites</p>
+<p>It's your favourites:</p>
+<div class="card" *ngFor="let film of this.LocalStorage.listOfFavourites">
+  <a [routerLink]="['/detailed', film.id]">
+    <h1>{{ film.title }}</h1>
+    <button class="btn" (click)="RemoveFromFavourites(film)">
+      Remove from Favourites
+    </button>
+  </a>
+</div>
