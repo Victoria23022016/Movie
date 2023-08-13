@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'favourites', component: FavouritesComponent },
   { path: 'detailed/:id', component: DetailedFilmComponent },
   { path: 'error', component: ErrorComponent },
+  { path: '**', redirectTo: '/error' },
 ];
 
 @NgModule({
