@@ -15,18 +15,6 @@ export class PostsComponent implements OnInit {
 
   constructor(public DataService: DataService) {}
 
-  findGenresById(arr: Film): any {
-    if (this.popularFilms) {
-      let names = [];
-      for (let genre_ids of arr.genre_ids) {
-        names.push(
-          this.genres[this.genres.findIndex((el: any) => el.id == genre_ids)]
-            .name
-        );
-      }
-      return names;
-    }
-  }
   ngOnInit(): void {
     this.DataService.getPopularFilms().subscribe((response) => {
       this.popularFilms = response.results;

@@ -21,9 +21,7 @@ export class DetailedFilmComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
       id &&
-        this.DataService.getById(+id).subscribe((film) => {
-          this.film = film;
-        });
+        this.DataService.getById(+id).subscribe((film) => (this.film = film));
     });
   }
 }

@@ -35,4 +35,16 @@ export class DataService {
       `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=ba5272b504616d17b0eb3ab1fc040852`
     );
   }
+
+  findGenresById(arr: Film, films: any, genres: any): any {
+    if (films) {
+      let names: any = [];
+      arr.genre_ids.forEach((genre_ids) => {
+        names.push(
+          genres[genres.findIndex((el: any) => el.id == genre_ids)].name
+        );
+      });
+      return names;
+    }
+  }
 }
