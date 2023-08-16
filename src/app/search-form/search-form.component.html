@@ -1,8 +1,26 @@
 <div class="container">
-  <form>
+  <form class="card" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h1>Find the movie you want</h1>
     <div class="form-control">
       <input type="text" placeholder="Наименование фильма" />
-      <div class="validation"></div>
+      <!--Сделать валидацию на англ алфавит?-->
     </div>
+    <div class="form-control">
+      <label>Include adult:</label>
+      <select formControlName="includeAdult">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+      </select>
+    </div>
+    <div class="form-control">
+      <label>Year:</label>
+      <input
+        type="text"
+        placeholder="Год выпуска фильма"
+        formControlName="year"
+      />
+      <!--Сделать валидацию на цифры?-->
+    </div>
+    <button class="btn" type="submit">Отправить</button>
   </form>
 </div>
