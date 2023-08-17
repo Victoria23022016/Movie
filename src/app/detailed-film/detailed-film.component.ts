@@ -6,7 +6,6 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import { PostsComponent } from '../posts/posts.component';
 import { ReccomendatedFilm } from '../data/interfaces.service';
-import { LocalStorage } from '../data/localstorage.service';
 
 @Component({
   selector: 'app-detailed-film',
@@ -17,11 +16,7 @@ export class DetailedFilmComponent implements OnInit {
   popularFilms: any; //почему не могу задать интерфейс Film?
   film: any; //почему не могу задать интерфейс Film?
   activatedBtn = false;
-  constructor(
-    public DataService: DataService,
-    private route: ActivatedRoute,
-    public LocalStorage: LocalStorage
-  ) {}
+  constructor(public DataService: DataService, private route: ActivatedRoute) {}
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
@@ -32,8 +27,8 @@ export class DetailedFilmComponent implements OnInit {
     });
   }
   AddToFavourites(film: any): void {
-    this.LocalStorage.listOfFavourites.push(film);
-    console.log(`Добавили в фавориты ${this.LocalStorage.listOfFavourites}`);
+    window.localStorage[film.id] = JSON.stringify(film);
+    console.log(`Добавили новый фильм в фавориты ${window.localStorage}`);
     this.activatedBtn = !this.activatedBtn;
   }
 }

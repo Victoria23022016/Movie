@@ -1,20 +1,29 @@
-import { Component } from '@angular/core';
-import { LocalStorage } from '../data/localstorage.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-favourites',
   templateUrl: './favourites.component.html',
   styleUrls: ['./favourites.component.scss'],
 })
-export class FavouritesComponent {
-  constructor(public LocalStorage: LocalStorage) {}
+export class FavouritesComponent implements OnInit {
+  favourites: any = [];
+  constructor() {}
+
+  ParseLocalStorage() {
+    let localKeys = Object.values(window.localStorage);
+    for (let key of localKeys) {
+      this.favourites.push(JSON.parse(key));
+    }
+    console.log('Favourites:', this.favourites);
+  }
+
+  ngOnInit(): void {
+    this.ParseLocalStorage();
+  }
+
   RemoveFromFavourites(film: any): void {
     console.log('Film id:', film.id);
-    let spliceId = this.LocalStorage.listOfFavourites.findIndex(
-      (el: any) => el.id == film.id
-    );
-    console.log(spliceId);
-    this.LocalStorage.listOfFavourites.splice(spliceId, 1);
-    console.log(this.LocalStorage.listOfFavourites);
+    window.localStorage.removeItem(`${film.id}`);
+    this.ParseLocalStorage();
   }
 }
