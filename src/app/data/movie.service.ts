@@ -15,17 +15,15 @@ export class MovieService {
   key = 'ba5272b504616d17b0eb3ab1fc040852';
   constructor(public http: HttpClient) {}
 
-  getFilms(): Observable<any> {
-    return this.http.get<any>( //переделать под нормальный тип данных
-      `${this.url}/popular?api_key=${this.key}`
-    );
+  getFilms(): Observable<Film> {
+    return this.http.get<Film>(`${this.url}/popular?api_key=${this.key}`);
   }
 
-  getMovieById(id: number) {
-    return this.http.get<any>(`${this.url}/${id}?api_key=${this.key}`);
+  getMovieById(id: number): Observable<DetailedFilm> {
+    return this.http.get<DetailedFilm>(`${this.url}/${id}?api_key=${this.key}`);
   }
-  getReccomendations(id: number): Observable<any> {
-    return this.http.get<any>(
+  getReccomendations(id: number): Observable<ReccomendatedFilm> {
+    return this.http.get<ReccomendatedFilm>(
       `${this.url}/${id}/recommendations?api_key=${this.key}`
     );
   }
