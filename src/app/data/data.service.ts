@@ -36,7 +36,7 @@ export class DataService {
     );
   }
 
-  findGenresById(arr: Film, films: any, genres: any): any {
+  findGenresById(arr: Film, films: Film[], genres: Genres[]): any {
     if (films) {
       let names: any = [];
       arr.genre_ids.forEach((genre_ids) => {

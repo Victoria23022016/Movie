@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { OnInit, Output } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { Film } from '../data/interfaces.service';
 import { DataService } from '../data/data.service';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -13,8 +13,8 @@ import { ReccomendatedFilm } from '../data/interfaces.service';
   styleUrls: ['./detailed-film.component.scss'],
 })
 export class DetailedFilmComponent implements OnInit {
-  popularFilms: any; //почему не могу задать интерфейс Film?
-  film: any; //почему не могу задать интерфейс Film?
+  popularFilms: Film[];
+  film: Film;
 
   constructor(public DataService: DataService, private route: ActivatedRoute) {}
   ngOnInit(): void {
