@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Film } from '../data/interfaces.service';
 import { DataService } from '../data/data.service';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-recommendated',
@@ -10,10 +11,15 @@ import { DataService } from '../data/data.service';
 export class RecommendatedComponent implements OnInit {
   @Input() film: any;
   reccomendated: any;
-  constructor(public DataService: DataService) {}
+  constructor(
+    public DataService: DataService,
+    private readonly _cdr: ChangeDetectorRef
+  ) {}
   ngOnInit(): void {
     this.DataService.getReccomendations(this.film.id).subscribe((response) => {
       this.reccomendated = response.results;
+      this._cdr.detectChanges;
+      console.log('Обновили рекомендации');
     });
   }
 }

@@ -3,7 +3,7 @@
   <a [routerLink]="['/detailed', film.id]">
     <h1>{{ film.title }}</h1>
 
-    <button class="btn" (click)="RemoveFromFavourites(film)">
+    <button class="btn" (click)="RemoveFromFavourites($event, film)">
       Remove from Favourites
     </button>
     <!--остановить всплытие события?-->

@@ -12,7 +12,7 @@ export class FavouritesComponent implements OnInit {
   ParseLocalStorage() {
     let localKeys = Object.values(window.localStorage);
     for (let key of localKeys) {
-      this.favourites.push(JSON.parse(key));
+      this.favourites.push(JSON.parse(key)); //переделать, не пушить а обновлять
     }
     console.log('Favourites:', this.favourites);
   }
@@ -21,7 +21,9 @@ export class FavouritesComponent implements OnInit {
     this.ParseLocalStorage();
   }
 
-  RemoveFromFavourites(film: any): void {
+  RemoveFromFavourites($event: MouseEvent, film: any): void {
+    $event.preventDefault();
+    $event.stopPropagation();
     console.log('Film id:', film.id);
     window.localStorage.removeItem(`${film.id}`);
     this.ParseLocalStorage();
