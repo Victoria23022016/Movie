@@ -19,10 +19,12 @@ export class MovieService {
     return this.http.get<Film>(`${this.url}/popular?api_key=${this.key}`);
   }
 
-  getMovieById(id: number): Observable<DetailedFilm> {
+  getMovieById(id: DetailedFilm['id']): Observable<DetailedFilm> {
     return this.http.get<DetailedFilm>(`${this.url}/${id}?api_key=${this.key}`);
   }
-  getReccomendations(id: number): Observable<ReccomendatedFilm> {
+  getReccomendations(
+    id: ReccomendatedFilm['id']
+  ): Observable<ReccomendatedFilm> {
     return this.http.get<ReccomendatedFilm>(
       `${this.url}/${id}/recommendations?api_key=${this.key}`
     );
