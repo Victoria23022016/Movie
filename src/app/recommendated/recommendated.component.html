@@ -1,8 +1,0 @@
-<div class="card">
-  <p>Movies recommended for viewing:</p>
-  <div class="card" *ngFor="let el of reccomendated">
-    <a [routerLink]="['/detailed', el.id]">
-      {{ el.title }}
-    </a>
-  </div>
-</div>
