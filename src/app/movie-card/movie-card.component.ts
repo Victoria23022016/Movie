@@ -14,7 +14,8 @@ export class MovieCardComponent {
     let names: String[] = [];
     film.genre_ids.forEach((genre_ids) => {
       names.push(
-        this.genres[this.genres.findIndex((el: any) => el.id == genre_ids)].name
+        this.genres[this.genres.findIndex((el: Genres) => el.id == genre_ids)]
+          .name
       );
     });
     return names;

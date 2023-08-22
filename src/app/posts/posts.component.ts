@@ -1,8 +1,6 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Film, Genres } from '../data/interfaces.service';
-import { Input } from '@angular/core';
 import { DataService } from '../data/data.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-posts',
@@ -10,8 +8,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./posts.component.scss'],
 })
 export class PostsComponent implements OnInit {
-  popularFilms: any; //поменять тип данных
-  genres: any; //поменять тип данных
+  popularFilms: Film[];
+  genres: Genres[];
 
   constructor(public DataService: DataService) {}
 

@@ -1,10 +1,8 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
-import { OnInit, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { Film, Genres } from '../data/interfaces.service';
 import { DataService } from '../data/data.service';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Observable } from 'rxjs';
-import { PostsComponent } from '../posts/posts.component';
 import { ReccomendatedFilm } from '../data/interfaces.service';
 
 @Component({
@@ -13,10 +11,10 @@ import { ReccomendatedFilm } from '../data/interfaces.service';
   styleUrls: ['./detailed-film.component.scss'],
 })
 export class DetailedFilmComponent implements OnInit {
-  popularFilms: Film[]; //почему не могу задать интерфейс Film?
-  film: Film; //почему не могу задать интерфейс Film?
+  popularFilms: Film[];
+  film: Film;
   activatedBtn = false;
-  reccomendated: any;
+  reccomendated: ReccomendatedFilm[];
   genres: Genres[];
   constructor(public DataService: DataService, private route: ActivatedRoute) {}
   ngOnInit(): void {
@@ -25,10 +23,14 @@ export class DetailedFilmComponent implements OnInit {
       id &&
         this.DataService.getById(+id).subscribe((film) => {
           this.film = film;
+          if (window.localStorage.getItem(`${this.film.id}`)) {
+            this.activatedBtn = true;
+          } else {
+            this.activatedBtn = false;
+          }
           this.DataService.getReccomendations(this.film.id).subscribe(
             (response) => {
               this.reccomendated = response.results;
-              console.log('Обновили рекомендации');
             }
           );
           this.DataService.getGenres().subscribe((response) => {
@@ -38,8 +40,9 @@ export class DetailedFilmComponent implements OnInit {
     });
   }
   AddToFavourites(film: any): void {
-    window.localStorage[film.id] = JSON.stringify(film);
-    console.log(`Добавили новый фильм в фавориты ${window.localStorage}`);
-    this.activatedBtn = !this.activatedBtn;
+    if (!window.localStorage.getItem(`${film.id}`)) {
+      window.localStorage[film.id] = JSON.stringify(film);
+      this.activatedBtn = !this.activatedBtn;
+    }
   }
 }

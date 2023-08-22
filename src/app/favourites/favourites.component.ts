@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Film } from '../data/interfaces.service';
 
 @Component({
   selector: 'app-favourites',
@@ -6,15 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./favourites.component.scss'],
 })
 export class FavouritesComponent implements OnInit {
-  favourites: any = [];
+  favourites: Film[] = [];
   constructor() {}
 
   ParseLocalStorage() {
-    let localKeys = Object.values(window.localStorage);
-    for (let key of localKeys) {
-      this.favourites.push(JSON.parse(key)); //переделать, не пушить а обновлять
-    }
-    console.log('Favourites:', this.favourites);
+    let localKeys = Object.values(window.localStorage).map((key) =>
+      JSON.parse(key)
+    );
+    this.favourites.splice(0, this.favourites.length, ...localKeys);
   }
 
   ngOnInit(): void {
