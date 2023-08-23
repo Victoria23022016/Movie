@@ -4,7 +4,9 @@
       <h1>{{ film.title }}</h1>
       <p>Description: {{ film.overview }}</p>
       <p>Release date: {{ film.release_date | date : "shortDate" }}</p>
-      <span>{{ this.findGengesById(film) }}</span>
+      <div *ngIf="genres">
+        {{ DataService.findGenresById(film, popularFilms, genres) }}
+      </div>
     </a>
   </div>
 </div>

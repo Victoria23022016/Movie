@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { OnInit, Output } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { Film } from '../data/interfaces.service';
 import { DataService } from '../data/data.service';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -13,21 +13,15 @@ import { ReccomendatedFilm } from '../data/interfaces.service';
   styleUrls: ['./detailed-film.component.scss'],
 })
 export class DetailedFilmComponent implements OnInit {
-  popularFilms: any;
-  film: any; //почему не могу задать интерфейс Film?
+  popularFilms: Film[];
+  film: Film;
 
-  constructor(public DataService: DataService, private route: ActivatedRoute) {}
+  constructor(public dataService: DataService, private route: ActivatedRoute) {}
   ngOnInit(): void {
-    console.log('перед получением');
-    this.DataService.popularFilmsSubject$.subscribe((data) => {
-      this.popularFilms = data;
-      console.log('Принято', this.popularFilms);
-    });
-    this.route.params.subscribe((params: Params) => {
-      this.film = this.DataService.getById(
-        +Object.values(params)[0],
-        this.popularFilms
-      ); //почему здесь нельзя использовать просто params.id?
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('id');
+      id &&
+        this.dataService.getById(+id).subscribe((film) => (this.film = film));
     });
   }
 }
