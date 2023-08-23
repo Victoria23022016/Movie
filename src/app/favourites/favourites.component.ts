@@ -10,7 +10,7 @@ export class FavouritesComponent implements OnInit {
   favourites: Film[] = [];
   constructor() {}
 
-  ParseLocalStorage() {
+  parseLocalStorage() {
     let localKeys = Object.values(window.localStorage).map((key) =>
       JSON.parse(key)
     );
@@ -18,14 +18,13 @@ export class FavouritesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ParseLocalStorage();
+    this.parseLocalStorage();
   }
 
-  RemoveFromFavourites($event: MouseEvent, film: any): void {
+  removeFromFavourites($event: MouseEvent, film: any): void {
     $event.preventDefault();
     $event.stopPropagation();
-    console.log('Film id:', film.id);
     window.localStorage.removeItem(`${film.id}`);
-    this.ParseLocalStorage();
+    this.parseLocalStorage();
   }
 }

@@ -6,7 +6,7 @@
     <p>Popularity: {{ this.film.popularity }}</p>
     <button
       class="btn"
-      (click)="AddToFavourites(this.film)"
+      (click)="addToFavourites(this.film)"
       [ngClass]="{ activated: activatedBtn, notactivated: !activatedBtn }"
     >
       Add to Favourites
