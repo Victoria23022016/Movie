@@ -16,12 +16,12 @@ export class DetailedFilmComponent implements OnInit {
   popularFilms: Film[];
   film: Film;
 
-  constructor(public DataService: DataService, private route: ActivatedRoute) {}
+  constructor(public dataService: DataService, private route: ActivatedRoute) {}
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
       id &&
-        this.DataService.getById(+id).subscribe((film) => (this.film = film));
+        this.dataService.getById(+id).subscribe((film) => (this.film = film));
     });
   }
 }
