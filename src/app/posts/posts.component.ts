@@ -1,8 +1,5 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { Film, Genres } from '../data/interfaces.service';
-import { Input } from '@angular/core';
-import { DataService } from '../data/data.service';
-import { Observable } from 'rxjs';
+import { FilmService, Film, Genres } from '../data/film.service';
 
 @Component({
   selector: 'app-posts',
@@ -10,17 +7,17 @@ import { Observable } from 'rxjs';
   styleUrls: ['./posts.component.scss'],
 })
 export class PostsComponent implements OnInit {
-  popularFilms: any; //поменять тип данных
-  genres: any; //поменять тип данных
+  popularFilms: Film[];
+  genres: Genres[];
 
-  constructor(public DataService: DataService) {}
+  constructor(public filmService: FilmService) {}
 
   ngOnInit(): void {
-    this.DataService.getPopularFilms().subscribe((response) => {
+    this.filmService.getFilms().subscribe((response) => {
       this.popularFilms = response.results;
     });
-    this.DataService.getGenres().subscribe((response) => {
+    /* this.filmService.getGenres().subscribe((response) => {
       this.genres = response.genres;
-    });
+    });*/
   }
 }

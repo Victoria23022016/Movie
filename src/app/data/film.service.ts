@@ -21,7 +21,7 @@ export interface Film {
 }
 
 @Injectable({ providedIn: 'root' })
-export class MovieService {
+export class FilmService {
   url = 'https://api.themoviedb.org/3/movie';
   key = 'ba5272b504616d17b0eb3ab1fc040852';
   constructor(public http: HttpClient) {}
