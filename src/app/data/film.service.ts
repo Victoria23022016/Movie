@@ -1,13 +1,24 @@
 import { Injectable } from '@angular/core';
-import {
-  Film,
-  Genres,
-  DetailedFilm,
-  ReccomendatedFilm,
-} from './interfaces.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Subject } from 'rxjs';
+
+export interface Genres {
+  id: number;
+  name: string;
+}
+
+export interface Film {
+  adult: boolean;
+  genre_ids: Array<number>;
+  id: number;
+  original_language: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  vote_average: number;
+}
 
 @Injectable({ providedIn: 'root' })
 export class MovieService {
@@ -19,13 +30,11 @@ export class MovieService {
     return this.http.get<Film>(`${this.url}/popular?api_key=${this.key}`);
   }
 
-  getMovieById(id: DetailedFilm['id']): Observable<DetailedFilm> {
-    return this.http.get<DetailedFilm>(`${this.url}/${id}?api_key=${this.key}`);
+  getFilmById(id: Film['id']): Observable<Film> {
+    return this.http.get<Film>(`${this.url}/${id}?api_key=${this.key}`);
   }
-  getReccomendations(
-    id: ReccomendatedFilm['id']
-  ): Observable<ReccomendatedFilm> {
-    return this.http.get<ReccomendatedFilm>(
+  getReccomendations(id: Film['id']): Observable<Film> {
+    return this.http.get<Film>(
       `${this.url}/${id}/recommendations?api_key=${this.key}`
     );
   }
