@@ -1,9 +1,18 @@
 <div class="container">
   <form class="card" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <h1>Find the movie you want</h1>
+    <h1>Find the movie you want:</h1>
     <div class="form-control">
-      <input type="text" placeholder="Наименование фильма" />
-      <!--Сделать валидацию на англ алфавит?-->
+      <input
+        type="text"
+        placeholder="Наименование фильма"
+        formControlName="title"
+      />
+      <div
+        class="validation"
+        *ngIf="form.get('title')?.invalid && form.get('title')?.touched"
+      >
+        <small>Fill the title!</small>
+      </div>
     </div>
     <div class="form-control">
       <label>Include adult:</label>
@@ -19,8 +28,13 @@
         placeholder="Год выпуска фильма"
         formControlName="year"
       />
-      <!--Сделать валидацию на цифры?-->
     </div>
-    <button class="btn" type="submit">Отправить</button>
+    <button class="btn" type="submit" [disabled]="form.invalid">
+      Отправить
+    </button>
   </form>
+  <div class="card" *ngFor="let film of foundFilms">
+    {{ film.title }}
+    <!--Сделаю с использованием movie-card, после мерджа с веткой Favourites-->
+  </div>
 </div>

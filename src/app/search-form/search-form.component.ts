@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { FormGroup, FormControl } from '@angular/forms';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Film } from '../data/interfaces.service';
 
 @Component({
   selector: 'app-search-form',
@@ -8,21 +9,24 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./search-form.component.scss'],
 })
 export class SearchFormComponent implements OnInit {
-  form: any; //почему не могу задать тип FormGroup?
+  form: FormGroup;
+  foundFilms: Film[];
   constructor(public http: HttpClient) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      includeAdult: new FormControl(''),
+      title: new FormControl('', [Validators.required]),
+      includeAdult: new FormControl('', [Validators.required]),
       year: new FormControl(''),
     });
   }
-  searchMovie() {
+  searchMovie(title: string, includeAdult: boolean, year: string) {
     let params = new HttpParams();
-    params = params.append('query', 'river');
-    params = params.append('include_adult', true); //почему не учитывается этот параметр?
+    params = params.append('query', `${title}`);
+    params = params.append('include_adult', includeAdult);
+    params = params.append('year', `${year}`);
     return this.http.get<any>(
-      'https://api.themoviedb.org/3/search/movie?api_key=ba5272b504616d17b0eb3ab1fc040852',
+      'https://api.themoviedb.org/3/search/movie?api_key=ba5272b504616d17b0eb3ab1fc040852', //сделать константы, вынести в сервис после мерджа
       {
         params,
       }
@@ -30,9 +34,13 @@ export class SearchFormComponent implements OnInit {
   }
   onSubmit(): void {
     const formData = { ...this.form.value };
-    console.log(formData.includeAdult); //убрать потом
-    this.searchMovie().subscribe((response) => {
-      console.log('Response:', response);
+    this.searchMovie(
+      formData.title,
+      formData.includeAdult,
+      formData.year
+    ).subscribe((response) => {
+      this.foundFilms = response.results;
+      console.log('Список найденных фильмов:', this.foundFilms);
     });
   }
 }
