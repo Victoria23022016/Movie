@@ -1,12 +1,12 @@
 <ng-container *ngIf="film">
   <div class="card">
-    <h1>{{ this.film.title }}</h1>
-    <p>Description: {{ this.film.overview }}</p>
-    <p>Rating: {{ this.film.vote_average }}</p>
-    <p>Popularity: {{ this.film.popularity }}</p>
+    <h1>{{ film.title }}</h1>
+    <p>Description: {{ film.overview }}</p>
+    <p>Rating: {{ film.vote_average }}</p>
+    <p>Popularity: {{ film.popularity }}</p>
     <button
       class="btn"
-      (click)="addToFavourites(this.film)"
+      (click)="addToFavourites(film)"
       [ngClass]="{ activated: activatedBtn, notactivated: !activatedBtn }"
     >
       Add to Favourites

@@ -39,10 +39,10 @@ export class DetailedFilmComponent implements OnInit {
         });
     });
   }
-  addToFavourites(film: any): void {
+  addToFavourites(film: Film): void {
     if (!window.localStorage.getItem(`${film.id}`)) {
       window.localStorage[film.id] = JSON.stringify(film);
-      this.activatedBtn = !this.activatedBtn;
+      this.activatedBtn = false;
     }
   }
 }
