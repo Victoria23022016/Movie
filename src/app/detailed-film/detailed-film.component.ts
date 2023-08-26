@@ -39,9 +39,6 @@ export class DetailedFilmComponent implements OnInit {
     });
   }
   addToFavourites(film: Film): void {
-    if (!window.localStorage.getItem(`${film.id}`)) {
-      window.localStorage[film.id] = JSON.stringify(film);
-      this.activatedBtn = false;
-    }
+    this.filmService.addtoLocalStorage(film, this.activatedBtn);
   }
 }

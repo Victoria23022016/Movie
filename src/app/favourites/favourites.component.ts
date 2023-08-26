@@ -15,10 +15,9 @@ export class FavouritesComponent implements OnInit {
     this.favourites = this.filmService.parseLocalStorage(this.favourites);
   }
   removeFromFavourites($event: MouseEvent, film: Film): void {
-    //нужно вынести в сервис?
     $event.preventDefault();
     $event.stopPropagation();
-    window.localStorage.removeItem(`${film.id}`);
+    this.filmService.removefromLocalStorage(film.id);
     this.filmService.parseLocalStorage(this.favourites);
   }
 }

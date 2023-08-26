@@ -62,4 +62,15 @@ export class FilmService {
     favourites.splice(0, favourites.length, ...localKeys);
     return favourites;
   }
+
+  addtoLocalStorage(film: Film, btn: boolean): void {
+    if (!window.localStorage.getItem(`${film.id}`)) {
+      window.localStorage[film.id] = JSON.stringify(film);
+      btn = false;
+    }
+  }
+
+  removefromLocalStorage(id: number): void {
+    window.localStorage.removeItem(`${id}`);
+  }
 }
