@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchFormComponent } from './search-form/search-form.component';
-import { DataService } from './data/data.service';
+import { FilmService } from '../app/data/film.service';
 import { PostsComponent } from './posts/posts.component';
 import { DetailedFilmComponent } from './detailed-film/detailed-film.component';
 import { FavouritesComponent } from './favourites/favourites.component';
@@ -25,7 +24,7 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
     MovieCardComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
-  providers: [],
+  providers: [FilmService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

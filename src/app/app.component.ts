@@ -1,11 +1,4 @@
-import { Component, Output } from '@angular/core';
-import { DataService } from './data/data.service';
-import {
-  Genres,
-  DetailedFilm,
-  Film,
-  ReccomendatedFilm,
-} from './data/interfaces.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',

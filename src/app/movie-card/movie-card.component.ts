@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Film, Genres } from '../data/interfaces.service';
+import { Film, Genres } from '../data/film.service';
 
 @Component({
   selector: 'app-movie-card',

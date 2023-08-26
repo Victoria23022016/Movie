@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Film, Genres } from '../data/interfaces.service';
-import { DataService } from '../data/data.service';
+import { FilmService, Film, Genres } from '../data/film.service';
 
 @Component({
   selector: 'app-posts',
@@ -11,13 +10,13 @@ export class PostsComponent implements OnInit {
   popularFilms: Film[];
   genres: Genres[];
 
-  constructor(public DataService: DataService) {}
+  constructor(public filmService: FilmService) {}
 
   ngOnInit(): void {
-    this.DataService.getPopularFilms().subscribe((response) => {
+    this.filmService.getFilms().subscribe((response) => {
       this.popularFilms = response.results;
     });
-    this.DataService.getGenres().subscribe((response) => {
+    this.filmService.getGenres().subscribe((response) => {
       this.genres = response.genres;
     });
   }

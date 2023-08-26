@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Film } from '../data/interfaces.service';
+import { Film } from '../data/film.service';
+import { FilmService } from '../data/film.service';
 
 @Component({
   selector: 'app-favourites',
@@ -8,23 +9,16 @@ import { Film } from '../data/interfaces.service';
 })
 export class FavouritesComponent implements OnInit {
   favourites: Film[] = [];
-  constructor() {}
-
-  parseLocalStorage() {
-    let localKeys = Object.values(window.localStorage).map((key) =>
-      JSON.parse(key)
-    );
-    this.favourites.splice(0, this.favourites.length, ...localKeys);
-  }
+  constructor(public filmService: FilmService) {}
 
   ngOnInit(): void {
-    this.parseLocalStorage();
+    this.favourites = this.filmService.parseLocalStorage(this.favourites);
   }
-
   removeFromFavourites($event: MouseEvent, film: Film): void {
+    //нужно вынести в сервис?
     $event.preventDefault();
     $event.stopPropagation();
     window.localStorage.removeItem(`${film.id}`);
-    this.parseLocalStorage();
+    this.filmService.parseLocalStorage(this.favourites);
   }
 }

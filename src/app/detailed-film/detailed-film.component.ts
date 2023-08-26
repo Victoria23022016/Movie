@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { Film, Genres } from '../data/interfaces.service';
-import { DataService } from '../data/data.service';
-import { ActivatedRoute, Params } from '@angular/router';
-import { ReccomendatedFilm } from '../data/interfaces.service';
+import { ActivatedRoute } from '@angular/router';
+import { FilmService, Film, Genres } from '../data/film.service';
 
 @Component({
   selector: 'app-detailed-film',
@@ -14,26 +12,27 @@ export class DetailedFilmComponent implements OnInit {
   popularFilms: Film[];
   film: Film;
   activatedBtn = false;
-  reccomendated: ReccomendatedFilm[];
+  reccomendated: Film[];
   genres: Genres[];
-  constructor(public dataService: DataService, private route: ActivatedRoute) {}
+  constructor(public filmService: FilmService, private route: ActivatedRoute) {}
+
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
       id &&
-        this.dataService.getById(+id).subscribe((film) => {
+        this.filmService.getFilmById(+id).subscribe((film) => {
           this.film = film;
           if (window.localStorage.getItem(`${this.film.id}`)) {
             this.activatedBtn = true;
           } else {
             this.activatedBtn = false;
           }
-          this.dataService
+          this.filmService
             .getReccomendations(this.film.id)
             .subscribe((response) => {
               this.reccomendated = response.results;
             });
-          this.dataService.getGenres().subscribe((response) => {
+          this.filmService.getGenres().subscribe((response) => {
             this.genres = response.genres;
           });
         });
