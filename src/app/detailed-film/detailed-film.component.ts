@@ -27,18 +27,17 @@ export class DetailedFilmComponent implements OnInit {
           } else {
             this.activatedBtn = false;
           }
-          this.filmService
-            .getReccomendations(this.film.id)
-            .subscribe((response) => {
-              this.reccomendated = response.results;
-            });
+          this.filmService.getReccomendations().subscribe((response) => {
+            this.reccomendated = response;
+          });
           this.filmService.getGenres().subscribe((response) => {
-            this.genres = response.genres;
+            this.genres = response;
           });
         });
     });
   }
   addToFavourites(film: Film): void {
-    this.filmService.addtoLocalStorage(film, this.activatedBtn);
+    this.filmService.addtoLocalStorage(film);
+    this.activatedBtn = true;
   }
 }

@@ -14,10 +14,10 @@ export class PostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.filmService.getFilms().subscribe((response) => {
-      this.popularFilms = response.results;
+      this.popularFilms = response;
     });
     this.filmService.getGenres().subscribe((response) => {
-      this.genres = response.genres;
+      this.genres = response;
     });
   }
 }

@@ -10,6 +10,7 @@ export interface Genres {
 
 export interface Film {
   adult: boolean;
+  backdrop_path: string;
   genre_ids: Array<number>;
   id: number;
   original_language: string;
@@ -21,39 +22,26 @@ export interface Film {
   vote_average: number;
 }
 
-export interface listOfFilms {
-  page: number;
-  results: Film[];
-}
-
-export interface listOfGenres {
-  genres: Genres[];
-}
-
 @Injectable({ providedIn: 'root' })
 export class FilmService {
-  url = 'https://api.themoviedb.org/3/movie';
-  key = 'ba5272b504616d17b0eb3ab1fc040852';
+  filmsUrl = 'api/films';
+  genresUrl = 'api/genres';
+  recomendUrl = 'api/reccomendated';
   constructor(public http: HttpClient) {}
 
-  getFilms(): Observable<listOfFilms> {
-    return this.http.get<listOfFilms>(
-      `${this.url}/popular?api_key=${this.key}`
-    );
+  getFilms(): Observable<Film[]> {
+    return this.http.get<Film[]>(this.filmsUrl);
   }
 
   getFilmById(id: Film['id']): Observable<Film> {
-    return this.http.get<Film>(`${this.url}/${id}?api_key=${this.key}`);
+    const filmsByIdUrl = `${this.filmsUrl}/${id}`;
+    return this.http.get<Film>(filmsByIdUrl);
   }
-  getReccomendations(id: Film['id']): Observable<listOfFilms> {
-    return this.http.get<listOfFilms>(
-      `${this.url}/${id}/recommendations?api_key=${this.key}`
-    );
+  getReccomendations(): Observable<Film[]> {
+    return this.http.get<Film[]>(this.recomendUrl);
   }
-  getGenres(): Observable<listOfGenres> {
-    return this.http.get<listOfGenres>(
-      'https://api.themoviedb.org/3/genre/movie/list?api_key=ba5272b504616d17b0eb3ab1fc040852'
-    );
+  getGenres(): Observable<Genres[]> {
+    return this.http.get<Genres[]>(this.genresUrl);
   }
   parseLocalStorage(favourites: Film[]) {
     let localKeys = Object.values(window.localStorage).map((key) =>
@@ -63,10 +51,9 @@ export class FilmService {
     return favourites;
   }
 
-  addtoLocalStorage(film: Film, btn: boolean): void {
+  addtoLocalStorage(film: Film): void {
     if (!window.localStorage.getItem(`${film.id}`)) {
       window.localStorage[film.id] = JSON.stringify(film);
-      btn = false;
     }
   }
 
