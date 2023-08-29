@@ -10,6 +10,9 @@ import { FavouritesComponent } from './favourites/favourites.component';
 import { ErrorComponent } from './error/error.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MovieCardComponent } from './movie-card/movie-card.component';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-film.service';
 
 @NgModule({
   declarations: [
@@ -20,8 +23,16 @@ import { HttpClientModule } from '@angular/common/http';
     FavouritesComponent,
     ErrorComponent,
     HomeComponent,
+    MovieCardComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
+      dataEncapsulation: false,
+    }),
+  ],
   providers: [FilmService],
   bootstrap: [AppComponent],
 })

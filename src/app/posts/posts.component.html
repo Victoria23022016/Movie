@@ -1,12 +1,5 @@
 <div class="container">
   <div class="card" *ngFor="let film of popularFilms">
-    <a [routerLink]="['/detailed', film.id]">
-      <h1>{{ film.title }}</h1>
-      <p>Description: {{ film.overview }}</p>
-      <p>Release date: {{ film.release_date | date : "shortDate" }}</p>
-      <div *ngIf="genres">
-        {{ DataService.findGenresById(film, popularFilms, genres) }}
-      </div>
-    </a>
+    <app-movie-card [film]="film" [genres]="genres"></app-movie-card>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FilmService, Film, Genres } from '../data/film.service';
 
 @Component({
@@ -14,10 +14,10 @@ export class PostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.filmService.getFilms().subscribe((response) => {
-      this.popularFilms = response.results;
+      this.popularFilms = response;
     });
-    /* this.filmService.getGenres().subscribe((response) => {
-      this.genres = response.genres;
-    });*/
+    this.filmService.getGenres().subscribe((response) => {
+      this.genres = response;
+    });
   }
 }

@@ -5,10 +5,12 @@ import { Observable } from 'rxjs';
 export interface Genres {
   id: number;
   name: string;
+  genres?: any;
 }
 
 export interface Film {
   adult: boolean;
+  backdrop_path: string;
   genre_ids: Array<number>;
   id: number;
   original_language: string;
@@ -22,20 +24,40 @@ export interface Film {
 
 @Injectable({ providedIn: 'root' })
 export class FilmService {
-  url = 'https://api.themoviedb.org/3/movie';
-  key = 'ba5272b504616d17b0eb3ab1fc040852';
+  filmsUrl = 'api/films';
+  genresUrl = 'api/genres';
+  recomendUrl = 'api/reccomendated';
   constructor(public http: HttpClient) {}
 
-  getFilms(): Observable<Film> {
-    return this.http.get<Film>(`${this.url}/popular?api_key=${this.key}`);
+  getFilms(): Observable<Film[]> {
+    return this.http.get<Film[]>(this.filmsUrl);
   }
 
   getFilmById(id: Film['id']): Observable<Film> {
-    return this.http.get<Film>(`${this.url}/${id}?api_key=${this.key}`);
+    const filmsByIdUrl = `${this.filmsUrl}/${id}`;
+    return this.http.get<Film>(filmsByIdUrl);
   }
-  getReccomendations(id: Film['id']): Observable<Film> {
-    return this.http.get<Film>(
-      `${this.url}/${id}/recommendations?api_key=${this.key}`
+  getReccomendations(): Observable<Film[]> {
+    return this.http.get<Film[]>(this.recomendUrl);
+  }
+  getGenres(): Observable<Genres[]> {
+    return this.http.get<Genres[]>(this.genresUrl);
+  }
+  parseLocalStorage(favourites: Film[]): Film[] {
+    let localKeys = Object.values(window.localStorage).map((key) =>
+      JSON.parse(key)
     );
+    favourites.splice(0, favourites.length, ...localKeys);
+    return favourites;
+  }
+
+  addtoLocalStorage(film: Film): void {
+    if (!window.localStorage.getItem(`${film.id}`)) {
+      window.localStorage[film.id] = JSON.stringify(film);
+    }
+  }
+
+  removefromLocalStorage(id: number): void {
+    window.localStorage.removeItem(`${id}`);
   }
 }
