@@ -11,7 +11,7 @@ import { FilmService, Film, Genres } from '../data/film.service';
 export class DetailedFilmComponent implements OnInit {
   popularFilms: Film[];
   film: Film;
-  activatedBtn = false;
+  isFavourite = false;
   reccomendated: Film[];
   genres: Genres[];
   constructor(public filmService: FilmService, private route: ActivatedRoute) {}
@@ -23,9 +23,9 @@ export class DetailedFilmComponent implements OnInit {
         this.filmService.getFilmById(+id).subscribe((film) => {
           this.film = film;
           if (window.localStorage.getItem(`${this.film.id}`)) {
-            this.activatedBtn = true;
+            this.isFavourite = true;
           } else {
-            this.activatedBtn = false;
+            this.isFavourite = false;
           }
           this.filmService.getReccomendations().subscribe((response) => {
             this.reccomendated = response;
@@ -36,8 +36,9 @@ export class DetailedFilmComponent implements OnInit {
         });
     });
   }
+
   addToFavourites(film: Film): void {
     this.filmService.addtoLocalStorage(film);
-    this.activatedBtn = true;
+    this.isFavourite = true;
   }
 }

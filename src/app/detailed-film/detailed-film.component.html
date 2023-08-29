@@ -7,7 +7,7 @@
     <button
       class="btn"
       (click)="addToFavourites(film)"
-      [ngClass]="{ activated: activatedBtn, notactivated: !activatedBtn }"
+      [ngClass]="{ activated: isFavourite, notactivated: !isFavourite }"
     >
       Add to Favourites
     </button>

@@ -43,7 +43,7 @@ export class FilmService {
   getGenres(): Observable<Genres[]> {
     return this.http.get<Genres[]>(this.genresUrl);
   }
-  parseLocalStorage(favourites: Film[]) {
+  parseLocalStorage(favourites: Film[]): Film[] {
     let localKeys = Object.values(window.localStorage).map((key) =>
       JSON.parse(key)
     );
