@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 export interface Genres {
   id: number;
@@ -59,5 +59,12 @@ export class FilmService {
 
   removefromLocalStorage(id: number): void {
     window.localStorage.removeItem(`${id}`);
+  }
+
+  searchFilm(term: string): Observable<Film[]> {
+    if (!term.trim()) {
+      return of([]);
+    }
+    return this.http.get<Film[]>(`${this.filmsUrl}/?title=${term}`);
   }
 }
