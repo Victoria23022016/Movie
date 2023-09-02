@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchFormComponent } from './search-form/search-form.component';
-import { FilmService } from '../app/data/film.service';
+import { FilmService } from './services/film.service';
 import { PostsComponent } from './posts/posts.component';
 import { DetailedFilmComponent } from './detailed-film/detailed-film.component';
 import { FavouritesComponent } from './favourites/favourites.component';

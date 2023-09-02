@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Film, Genres } from '../data/film.service';
+import { Film, Genres } from '../services/film.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-movie-card',

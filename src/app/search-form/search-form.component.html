@@ -1,8 +1,19 @@
 <div class="container">
-  <form>
-    <div class="form-control">
-      <input type="text" placeholder="Наименование фильма" />
-      <div class="validation"></div>
+  <div class="form-control">
+    <label>Type title of film:</label>
+    <input
+      #searchBox
+      type="text"
+      placeholder="Title of the film"
+      (input)="search(searchBox.value)"
+    />
+  </div>
+  <div>
+    <div *ngIf="searchBox.value"><h1>We found:</h1></div>
+    <div class="card" *ngFor="let film of films$ | async">
+      <div *ngIf="genres$ | async as genres">
+        <app-movie-card [film]="film" [genres]="genres"></app-movie-card>
+      </div>
     </div>
-  </form>
+  </div>
 </div>

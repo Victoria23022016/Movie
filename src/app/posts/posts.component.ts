@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FilmService, Film, Genres } from '../data/film.service';
+import { FilmService, Film, Genres } from '../services/film.service';
 
 @Component({
   selector: 'app-posts',
