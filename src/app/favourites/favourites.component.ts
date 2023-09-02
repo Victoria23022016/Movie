@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Film } from '../data/film.service';
-import { FilmService } from '../data/film.service';
+import { Film } from '../services/film.service';
+import { FilmService } from '../services/film.service';
 
 @Component({
   selector: 'app-favourites',

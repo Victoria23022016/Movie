@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { InMemoryBackendConfigArgs } from 'angular-in-memory-web-api';
-import { Genres } from './data/film.service';
+import { Genres } from './services/film.service';
 
 export interface listOfFilms {
   adult: boolean;

@@ -4,14 +4,16 @@
     <input
       #searchBox
       type="text"
-      placeholder="Наименование фильма"
+      placeholder="Title of the film"
       (input)="search(searchBox.value)"
     />
   </div>
   <div>
     <div *ngIf="searchBox.value"><h1>We found:</h1></div>
     <div class="card" *ngFor="let film of films$ | async">
-      <app-movie-card [film]="film" [genres]="genres"></app-movie-card>
+      <div *ngIf="genres$ | async as genres">
+        <app-movie-card [film]="film" [genres]="genres"></app-movie-card>
+      </div>
     </div>
   </div>
 </div>

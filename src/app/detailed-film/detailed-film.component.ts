@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FilmService, Film, Genres } from '../data/film.service';
+import { FilmService, Film, Genres } from '../services/film.service';
 
 @Component({
   selector: 'app-detailed-film',
