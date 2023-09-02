@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FilmService } from '../services/film.service';
-import { Film, Genres } from '../services/film.service';
+import { FilmService, Film, Genres } from '../services/film.service';
 import {
   Observable,
   Subject,
@@ -16,14 +15,12 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchFormComponent implements OnInit {
-  genres$: Observable<Genres[]>;
+  genres$: Observable<Genres[]> = this._filmService.getGenres();
   films$: Observable<Film[]>;
 
   private _searchTerms = new Subject<string>();
 
-  constructor(private readonly _filmService: FilmService) {
-    this.genres$ = this._filmService.getGenres();
-  }
+  constructor(private readonly _filmService: FilmService) {}
 
   search(term: string): void {
     this._searchTerms.next(term);
