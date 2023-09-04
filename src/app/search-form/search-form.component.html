@@ -11,9 +11,7 @@
   <div>
     <div *ngIf="searchBox.value"><h1>We found:</h1></div>
     <div class="card" *ngFor="let film of films$ | async">
-      <div *ngIf="genres$ | async as genres">
-        <app-movie-card [film]="film" [genres]="genres"></app-movie-card>
-      </div>
+      <app-movie-card [film]="film"></app-movie-card>
     </div>
   </div>
 </div>

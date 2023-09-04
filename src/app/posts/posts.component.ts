@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmService, Film, Genres } from '../services/film.service';
+import { Observable, forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-posts',
@@ -9,15 +10,29 @@ import { FilmService, Film, Genres } from '../services/film.service';
 export class PostsComponent implements OnInit {
   popularFilms: Film[];
   genres: Genres[];
+  getFilms: Observable<Film[]> = this._filmService.getFilms();
+  getGenres: Observable<Genres[]> = this._filmService.getGenres();
 
-  constructor(public filmService: FilmService) {}
+  constructor(private readonly _filmService: FilmService) {}
 
   ngOnInit(): void {
-    this.filmService.getFilms().subscribe((response) => {
-      this.popularFilms = response;
+    forkJoin([this.getFilms, this.getGenres]).subscribe((result) => {
+      this.popularFilms = result[0];
+      this.genres = result[1];
+      this.popularFilms.map(
+        (film) => (film.genresToDisplay = this.findGenresById(film))
+      );
     });
-    this.filmService.getGenres().subscribe((response) => {
-      this.genres = response;
+  }
+
+  findGenresById(film: Film): any {
+    let names: String[] = [];
+    film.genre_ids.forEach((genre_ids) => {
+      names.push(
+        this.genres[this.genres.findIndex((el: Genres) => el.id == genre_ids)]
+          .name
+      );
     });
+    return names;
   }
 }

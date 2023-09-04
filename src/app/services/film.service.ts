@@ -20,6 +20,7 @@ export interface Film {
   release_date: string;
   title: string;
   vote_average: number;
+  genresToDisplay?: string[];
 }
 
 @Injectable({ providedIn: 'root' })

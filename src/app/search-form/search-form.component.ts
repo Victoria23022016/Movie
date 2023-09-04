@@ -5,6 +5,9 @@ import {
   Subject,
   debounceTime,
   distinctUntilChanged,
+  forkJoin,
+  map,
+  mergeMap,
   switchMap,
 } from 'rxjs';
 
@@ -15,10 +18,10 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchFormComponent implements OnInit {
-  genres$: Observable<Genres[]> = this._filmService.getGenres();
-  films$: Observable<Film[]>;
-
   private _searchTerms = new Subject<string>();
+
+  genres: Genres[];
+  films$: Observable<Film[]>;
 
   constructor(private readonly _filmService: FilmService) {}
 
@@ -27,10 +30,27 @@ export class SearchFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.films$ = this._searchTerms.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap((term: string) => this._filmService.searchFilm(term))
-    );
+    this._filmService.getGenres().subscribe((result) => {
+      this.genres = result;
+      this.films$ = this._searchTerms.pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        mergeMap((term: string) => this._filmService.searchFilm(term)),
+        map((film) =>
+          film.map((el) => (el.genresToDisplay = this.findGenresById(el)))
+        )
+      );
+    });
+  }
+
+  findGenresById(film: Film): any {
+    let names: String[] = [];
+    film.genre_ids.forEach((genre_ids) => {
+      names.push(
+        this.genres[this.genres.findIndex((el: Genres) => el.id == genre_ids)]
+          .name
+      );
+    });
+    return names;
   }
 }
