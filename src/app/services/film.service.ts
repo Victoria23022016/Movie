@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, forkJoin, map, of, tap } from 'rxjs';
 
 export interface Genres {
   id: number;
@@ -28,22 +28,73 @@ export class FilmService {
   filmsUrl = 'api/films';
   genresUrl = 'api/genres';
   recomendUrl = 'api/reccomendated';
-  constructor(public http: HttpClient) {}
+  genres: Genres[] = [];
+  popularFilms: Film[];
+
+  constructor(private _http: HttpClient) {}
+
+  getGenres(): Observable<Genres[]> {
+    if (!this.genres.length) {
+      return this._http
+        .get<Genres[]>(this.genresUrl)
+        .pipe(tap((response) => (this.genres = response)));
+    }
+    return of(this.genres);
+  }
 
   getFilms(): Observable<Film[]> {
-    return this.http.get<Film[]>(this.filmsUrl);
+    let films = forkJoin([
+      this.getGenres(),
+      this._http.get<Film[]>(this.filmsUrl),
+    ]).pipe(
+      map(([genres, films]) =>
+        films.map((film) => {
+          film.genresToDisplay = this._findGenresById(film, genres);
+          return film;
+        })
+      )
+    );
+    return films;
+  }
+
+  getReccomendations(): Observable<Film[]> {
+    let recomendated = forkJoin([
+      this.getGenres(),
+      this._http.get<Film[]>(this.recomendUrl),
+    ]).pipe(
+      map(([genres, films]) =>
+        films.map((film) => {
+          film.genresToDisplay = this._findGenresById(film, genres);
+          return film;
+        })
+      )
+    );
+    return recomendated;
+  }
+
+  searchFilm(term: string): Observable<Film[]> {
+    if (!term.trim()) {
+      return of([]);
+    }
+    let films = forkJoin([
+      this.getGenres(),
+      this._http.get<Film[]>(`${this.filmsUrl}/?title=${term}`),
+    ]).pipe(
+      map(([genres, films]) =>
+        films.map((film) => {
+          film.genresToDisplay = this._findGenresById(film, genres);
+          return film;
+        })
+      )
+    );
+    return films;
   }
 
   getFilmById(id: Film['id']): Observable<Film> {
     const filmsByIdUrl = `${this.filmsUrl}/${id}`;
-    return this.http.get<Film>(filmsByIdUrl);
+    return this._http.get<Film>(filmsByIdUrl);
   }
-  getReccomendations(): Observable<Film[]> {
-    return this.http.get<Film[]>(this.recomendUrl);
-  }
-  getGenres(): Observable<Genres[]> {
-    return this.http.get<Genres[]>(this.genresUrl);
-  }
+
   parseLocalStorage(favourites: Film[]): Film[] {
     let localKeys = Object.values(window.localStorage).map((key) =>
       JSON.parse(key)
@@ -58,14 +109,21 @@ export class FilmService {
     }
   }
 
+  checkLocalStorage(id: number): boolean {
+    return window.localStorage.getItem(`${id}`) ? true : false;
+  }
+
   removefromLocalStorage(id: number): void {
     window.localStorage.removeItem(`${id}`);
   }
 
-  searchFilm(term: string): Observable<Film[]> {
-    if (!term.trim()) {
-      return of([]);
-    }
-    return this.http.get<Film[]>(`${this.filmsUrl}/?title=${term}`);
+  _findGenresById(film: Film, genres: Genres[]): string[] {
+    let names: string[] = [];
+    film.genre_ids.forEach((genre_ids) => {
+      names.push(
+        genres[genres.findIndex((el: Genres) => el.id == genre_ids)].name
+      );
+    });
+    return names;
   }
 }
