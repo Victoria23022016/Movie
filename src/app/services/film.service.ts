@@ -43,7 +43,7 @@ export class FilmService {
   }
 
   getFilms(): Observable<Film[]> {
-    let films = forkJoin([
+    return forkJoin([
       this.getGenres(),
       this._http.get<Film[]>(this.filmsUrl),
     ]).pipe(
@@ -54,11 +54,10 @@ export class FilmService {
         })
       )
     );
-    return films;
   }
 
   getReccomendations(): Observable<Film[]> {
-    let recomendated = forkJoin([
+    return forkJoin([
       this.getGenres(),
       this._http.get<Film[]>(this.recomendUrl),
     ]).pipe(
@@ -69,14 +68,13 @@ export class FilmService {
         })
       )
     );
-    return recomendated;
   }
 
   searchFilm(term: string): Observable<Film[]> {
     if (!term.trim()) {
       return of([]);
     }
-    let films = forkJoin([
+    return forkJoin([
       this.getGenres(),
       this._http.get<Film[]>(`${this.filmsUrl}/?title=${term}`),
     ]).pipe(
@@ -87,7 +85,6 @@ export class FilmService {
         })
       )
     );
-    return films;
   }
 
   getFilmById(id: Film['id']): Observable<Film> {
@@ -118,7 +115,7 @@ export class FilmService {
   }
 
   _findGenresById(film: Film, genres: Genres[]): string[] {
-    let names: string[] = [];
+    const names: string[] = [];
     film.genre_ids.forEach((genre_ids) => {
       names.push(
         genres[genres.findIndex((el: Genres) => el.id == genre_ids)].name

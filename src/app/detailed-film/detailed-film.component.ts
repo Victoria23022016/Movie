@@ -12,9 +12,9 @@ import { ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DetailedFilmComponent implements OnInit {
-  film: Observable<Film>;
+  film$: Observable<Film>;
   isFavourite = false;
-  reccomendated: Observable<Film[]>;
+  reccomendated$: Observable<Film[]>;
 
   constructor(
     private readonly _filmService: FilmService,
@@ -25,13 +25,13 @@ export class DetailedFilmComponent implements OnInit {
     this._route.paramMap.subscribe((params) => {
       const id = params.get('id');
       if (id) {
-        this.film = this._filmService.getFilmById(+id);
+        this.film$ = this._filmService.getFilmById(+id);
 
         this.isFavourite = this._filmService.checkLocalStorage(+id)
           ? true
           : false;
 
-        this.reccomendated = this._filmService.getReccomendations();
+        this.reccomendated$ = this._filmService.getReccomendations();
       }
     });
   }

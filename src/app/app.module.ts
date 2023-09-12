@@ -10,7 +10,7 @@ import { FavouritesComponent } from './favourites/favourites.component';
 import { ErrorComponent } from './error/error.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FilmCardComponent } from './movie-card/film-card.component';
+import { FilmCardComponent } from './film-card/film-card.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-film.service';
 
