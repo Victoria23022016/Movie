@@ -1,44 +1,43 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FilmService, Film, Genres } from '../services/film.service';
+import { FilmService, Film } from '../services/film.service';
+import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-detailed-film',
   templateUrl: './detailed-film.component.html',
   styleUrls: ['./detailed-film.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DetailedFilmComponent implements OnInit {
-  popularFilms: Film[];
-  film: Film;
+  film$: Observable<Film>;
   isFavourite = false;
-  reccomendated: Film[];
-  genres: Genres[];
-  constructor(public filmService: FilmService, private route: ActivatedRoute) {}
+  reccomendated$: Observable<Film[]>;
+
+  constructor(
+    private readonly _filmService: FilmService,
+    private readonly _route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
+    this._route.paramMap.subscribe((params) => {
       const id = params.get('id');
-      id &&
-        this.filmService.getFilmById(+id).subscribe((film) => {
-          this.film = film;
-          if (window.localStorage.getItem(`${this.film.id}`)) {
-            this.isFavourite = true;
-          } else {
-            this.isFavourite = false;
-          }
-          this.filmService.getReccomendations().subscribe((response) => {
-            this.reccomendated = response;
-          });
-          this.filmService.getGenres().subscribe((response) => {
-            this.genres = response;
-          });
-        });
+      if (id) {
+        this.film$ = this._filmService.getFilmById(+id);
+
+        this.isFavourite = this._filmService.checkLocalStorage(+id)
+          ? true
+          : false;
+
+        this.reccomendated$ = this._filmService.getReccomendations();
+      }
     });
   }
 
   addToFavourites(film: Film): void {
-    this.filmService.addtoLocalStorage(film);
+    this._filmService.addtoLocalStorage(film);
     this.isFavourite = true;
   }
 }

@@ -1,23 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { FilmService, Film, Genres } from '../services/film.service';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FilmService, Film } from '../services/film.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostsComponent implements OnInit {
-  popularFilms: Film[];
-  genres: Genres[];
+  popularFilms$: Observable<Film[]>;
 
-  constructor(public filmService: FilmService) {}
+  constructor(private readonly _filmService: FilmService) {}
 
   ngOnInit(): void {
-    this.filmService.getFilms().subscribe((response) => {
-      this.popularFilms = response;
-    });
-    this.filmService.getGenres().subscribe((response) => {
-      this.genres = response;
-    });
+    this.popularFilms$ = this._filmService.getFilms();
   }
 }

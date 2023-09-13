@@ -1,4 +1,4 @@
-<ng-container *ngIf="film">
+<ng-container *ngIf="film$ | async as film">
   <div class="card">
     <h1>{{ film.title }}</h1>
     <p>Description: {{ film.overview }}</p>
@@ -12,7 +12,7 @@
       Add to Favourites
     </button>
   </div>
-  <div *ngFor="let film of reccomendated">
-    <app-movie-card [film]="film" [genres]="genres"></app-movie-card>
+  <div *ngFor="let film of reccomendated$ | async">
+    <app-film-card [film]="film"></app-film-card>
   </div>
 </ng-container>

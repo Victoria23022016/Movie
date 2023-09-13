@@ -369,6 +369,7 @@ export class InMemoryDataService implements InMemoryDbService {
         vote_count: 2624,
       },
     ];
+
     const genres: Genres[] = [
       { id: 28, name: 'Action' },
       { id: 12, name: 'Adventure' },
@@ -390,6 +391,7 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 10752, name: 'War' },
       { id: 37, name: 'Western' },
     ];
+
     const reccomendated = [
       {
         adult: false,
@@ -443,6 +445,7 @@ export class InMemoryDataService implements InMemoryDbService {
         vote_count: 2624,
       },
     ];
+
     return { films, genres, reccomendated };
   }
 }

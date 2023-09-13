@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FilmService, Film, Genres } from '../services/film.service';
+import { FilmService, Film } from '../services/film.service';
 import {
   Observable,
   Subject,
   debounceTime,
   distinctUntilChanged,
-  switchMap,
+  mergeMap,
 } from 'rxjs';
 
 @Component({
@@ -15,10 +15,9 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchFormComponent implements OnInit {
-  genres$: Observable<Genres[]> = this._filmService.getGenres();
-  films$: Observable<Film[]>;
-
   private _searchTerms = new Subject<string>();
+
+  films$: Observable<Film[]>;
 
   constructor(private readonly _filmService: FilmService) {}
 
@@ -30,7 +29,7 @@ export class SearchFormComponent implements OnInit {
     this.films$ = this._searchTerms.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap((term: string) => this._filmService.searchFilm(term))
+      mergeMap((term: string) => this._filmService.searchFilm(term))
     );
   }
 }

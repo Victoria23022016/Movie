@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Popular films:</h1>
-  <div class="card" *ngFor="let film of popularFilms">
-    <app-movie-card [film]="film" [genres]="genres"></app-movie-card>
+  <div class="card" *ngFor="let film of popularFilms$ | async">
+    <app-film-card [film]="film"></app-film-card>
   </div>
 </div>
