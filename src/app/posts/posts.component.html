@@ -1,6 +1,11 @@
 <div class="container">
-  <h1>Popular films:</h1>
-  <div class="card" *ngFor="let film of popularFilms$ | async">
-    <app-film-card [film]="film"></app-film-card>
-  </div>
+  <h1 *ngIf="error; else postsBlock" class="error">
+    Error: {{ error | lowercase }}
+  </h1>
+  <ng-template #postsBlock>
+    <h1>Popular films:</h1>
+    <div class="card" *ngFor="let film of popularFilms$ | async">
+      <app-film-card [film]="film"></app-film-card>
+    </div>
+  </ng-template>
 </div>

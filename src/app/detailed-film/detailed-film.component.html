@@ -1,18 +1,24 @@
-<ng-container *ngIf="film$ | async as film">
-  <div class="card">
-    <h1>{{ film.title }}</h1>
-    <p>Description: {{ film.overview }}</p>
-    <p>Rating: {{ film.vote_average }}</p>
-    <p>Popularity: {{ film.popularity }}</p>
-    <button
-      class="btn"
-      (click)="addToFavourites(film)"
-      [ngClass]="{ activated: isFavourite, notactivated: !isFavourite }"
-    >
-      Add to Favourites
-    </button>
-  </div>
-  <div *ngFor="let film of reccomendated$ | async">
-    <app-film-card [film]="film"></app-film-card>
-  </div>
-</ng-container>
+<h1 *ngIf="error; else detailedBlock" class="error">
+  Error:{{ error | lowercase }}
+</h1>
+
+<ng-template #detailedBlock>
+  <ng-container *ngIf="film$ | async as film">
+    <div class="card">
+      <h1>{{ film.title }}</h1>
+      <p>Description: {{ film.overview }}</p>
+      <p>Rating: {{ film.vote_average }}</p>
+      <p>Popularity: {{ film.popularity }}</p>
+      <button
+        class="btn"
+        (click)="addToFavourites(film)"
+        [ngClass]="{ activated: isFavourite, notactivated: !isFavourite }"
+      >
+        Add to Favourites
+      </button>
+    </div>
+    <div *ngFor="let film of reccomendated$ | async">
+      <app-film-card [film]="film"></app-film-card>
+    </div>
+  </ng-container>
+</ng-template>
