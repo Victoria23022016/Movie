@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SearchFormComponent } from './search-form/search-form.component';
+import { SearchComponent } from './search/search.component';
 import { FilmService } from './services/film.service';
 import { PostsComponent } from './posts/posts.component';
 import { DetailedFilmComponent } from './detailed-film/detailed-film.component';
@@ -17,7 +17,7 @@ import { InMemoryDataService } from './in-memory-film.service';
 @NgModule({
   declarations: [
     AppComponent,
-    SearchFormComponent,
+    SearchComponent,
     PostsComponent,
     DetailedFilmComponent,
     FavouritesComponent,

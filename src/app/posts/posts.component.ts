@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FilmService, Film } from '../services/film.service';
-import { Observable } from 'rxjs';
+import { EMPTY, Observable, catchError } from 'rxjs';
 
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostsComponent implements OnInit {
@@ -14,6 +13,11 @@ export class PostsComponent implements OnInit {
   constructor(private readonly _filmService: FilmService) {}
 
   ngOnInit(): void {
-    this.popularFilms$ = this._filmService.getFilms();
+    this.popularFilms$ = this._filmService.getFilms().pipe(
+      catchError((error) => {
+        console.error(error);
+        return EMPTY;
+      })
+    );
   }
 }

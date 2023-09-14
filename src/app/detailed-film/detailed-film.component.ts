@@ -1,9 +1,7 @@
-import { Component } from '@angular/core';
-import { OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FilmService, Film } from '../services/film.service';
-import { Observable } from 'rxjs';
-import { ChangeDetectionStrategy } from '@angular/core';
+import { Observable, catchError, EMPTY } from 'rxjs';
 
 @Component({
   selector: 'app-detailed-film',
@@ -24,8 +22,15 @@ export class DetailedFilmComponent implements OnInit {
   ngOnInit(): void {
     this._route.paramMap.subscribe((params) => {
       const id = params.get('id');
+
       if (id) {
-        this.film$ = this._filmService.getFilmById(+id);
+        this.film$ = this._filmService.getFilmById(+id).pipe(
+          catchError((error) => {
+            console.error(error);
+
+            return EMPTY;
+          })
+        );
 
         this.isFavourite = this._filmService.checkLocalStorage(+id)
           ? true

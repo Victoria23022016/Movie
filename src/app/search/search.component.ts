@@ -9,12 +9,12 @@ import {
 } from 'rxjs';
 
 @Component({
-  selector: 'app-search-form',
-  templateUrl: './search-form.component.html',
-  styleUrls: ['./search-form.component.scss'],
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchFormComponent implements OnInit {
+export class SearchComponent implements OnInit {
   private _searchTerms = new Subject<string>();
 
   films$: Observable<Film[]>;
