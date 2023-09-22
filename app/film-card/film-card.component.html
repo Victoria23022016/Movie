@@ -1,0 +1,10 @@
+<a [routerLink]="['/detailed', film.id]">
+  <h1 class="card__title">{{ film.title }}</h1>
+  <p class="card__info">Description: {{ film.overview }}</p>
+  <p class="card__info">
+    Release date: {{ film.release_date | date : "shortDate" }}
+  </p>
+  <p class="card__genres" *ngFor="let genre of film.genresToDisplay">
+    {{ genre }}
+  </p>
+</a>

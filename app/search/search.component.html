@@ -1,0 +1,18 @@
+<div class="form">
+  <div class="form__control">
+    <label class="form__label">Type title of film:</label>
+    <input
+      class="form__input"
+      #searchBox
+      type="text"
+      placeholder="Title of the film"
+      (input)="search(searchBox.value)"
+    />
+  </div>
+  <div>
+    <div *ngIf="searchBox.value"><h1>We found:</h1></div>
+    <div class="card" *ngFor="let film of films$ | async">
+      <app-film-card [film]="film"></app-film-card>
+    </div>
+  </div>
+</div>
