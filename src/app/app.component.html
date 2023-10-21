@@ -1,9 +1,13 @@
 <nav class="navbar">
   <ul>
-    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+    <li
+      class="navbar__link"
+      routerLinkActive="navbar__link_active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
       <a [routerLink]="['/']">Go to home page</a>
     </li>
-    <li routerLinkActive="active">
+    <li class="navbar__link" routerLinkActive="navbar__link_active">
       <a [routerLink]="['/favourites']">Go to favourites</a>
     </li>
   </ul>

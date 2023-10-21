@@ -1,19 +1,21 @@
 <ng-container *ngIf="film$ | async as film">
-  <div class="card">
-    <h1>{{ film.title }}</h1>
-    <p>Description: {{ film.overview }}</p>
-    <p>Rating: {{ film.vote_average }}</p>
-    <p>Popularity: {{ film.popularity }}</p>
+  <div appShadowing class="card">
+    <h1 class="card__title">{{ film.title }}</h1>
+    <p class="card__info">Description: {{ film.overview }}</p>
+    <p class="card__info">Rating: {{ film.vote_average }}</p>
+    <p class="card__info">Popularity: {{ film.popularity }}</p>
     <button
       class="btn"
       (click)="addToFavourites(film)"
-      [ngClass]="{ activated: isFavourite, notactivated: !isFavourite }"
+      [ngClass]="{
+        btn_activated: isFavourite,
+        btn_notactivated: !isFavourite
+      }"
     >
-      <!--добавить по БЭМ-->
       Add to Favourites
     </button>
   </div>
-  <div *ngFor="let film of reccomendated$ | async">
+  <div appShadowing class="card" *ngFor="let film of reccomendated$ | async">
     <app-film-card [film]="film"></app-film-card>
   </div>
 </ng-container>

@@ -1,7 +1,7 @@
 <h1>It's your favourites:</h1>
 <div class="card" *ngFor="let film of this.favourites">
   <a [routerLink]="['/detailed', film.id]">
-    <h1>{{ film.title }}</h1>
+    <h1 class="card__title">{{ film.title }}</h1>
 
     <button class="btn" (click)="removeFromFavourites($event, film)">
       Remove from Favourites

@@ -49,7 +49,7 @@ export class FilmService {
     ]).pipe(
       map(([genres, films]) =>
         films.map((film) => {
-          this.assignGenres(genres, film);
+          this._assignGenres(genres, film);
           return film;
         })
       )
@@ -63,7 +63,7 @@ export class FilmService {
     ]).pipe(
       map(([genres, films]) =>
         films.map((film) => {
-          this.assignGenres(genres, film);
+          this._assignGenres(genres, film);
           return film;
         })
       )
@@ -80,7 +80,7 @@ export class FilmService {
     ]).pipe(
       map(([genres, films]) =>
         films.map((film) => {
-          this.assignGenres(genres, film);
+          this._assignGenres(genres, film);
           return film;
         })
       )
@@ -124,7 +124,7 @@ export class FilmService {
     return names;
   }
 
-  assignGenres(genres: Genres[], film: Film) {
+  _assignGenres(genres: Genres[], film: Film) {
     film.genresToDisplay = this._findGenresById(film, genres);
   }
 }
