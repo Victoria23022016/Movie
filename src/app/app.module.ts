@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FilmCardComponent } from './film-card/film-card.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-film.service';
+import { ShadowingDirective } from './directives/shadowing.directive';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { InMemoryDataService } from './in-memory-film.service';
     ErrorComponent,
     HomeComponent,
     FilmCardComponent,
+    ShadowingDirective,
   ],
   imports: [
     BrowserModule,
