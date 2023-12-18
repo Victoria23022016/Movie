@@ -14,6 +14,11 @@ import { FilmCardComponent } from './film-card/film-card.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-film.service';
 import { ShadowingDirective } from './directives/shadowing.directive';
+import { AuthService } from './services/auth.service';
+import { AuthComponent } from './auth/auth.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -26,16 +31,20 @@ import { ShadowingDirective } from './directives/shadowing.directive';
     HomeComponent,
     FilmCardComponent,
     ShadowingDirective,
+    AuthComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
       dataEncapsulation: false,
     }),
   ],
-  providers: [FilmService],
+  providers: [FilmService, AuthService, AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

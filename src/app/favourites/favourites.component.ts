@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Film } from '../services/film.service';
+import { Film } from '../models/models';
 import { FilmService } from '../services/film.service';
 
 @Component({

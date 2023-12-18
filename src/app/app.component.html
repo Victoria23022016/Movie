@@ -5,10 +5,16 @@
       routerLinkActive="navbar__link_active"
       [routerLinkActiveOptions]="{ exact: true }"
     >
-      <a [routerLink]="['/']">Go to home page</a>
+      <a [routerLink]="['/home']">Go to home page</a>
     </li>
     <li class="navbar__link" routerLinkActive="navbar__link_active">
       <a [routerLink]="['/favourites']">Go to favourites</a>
+    </li>
+    <li class="navbar__link" routerLinkActive="navbar__link_active">
+      <a [routerLink]="['/auth']">Go to Auth</a>
+    </li>
+    <li class="navbar__link" routerLinkActive="navbar__link_active">
+      <a [routerLink]="['/login']">Go to login and logout</a>
     </li>
   </ul>
 </nav>

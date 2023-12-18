@@ -1,27 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin, map, of, tap } from 'rxjs';
-
-export interface Genres {
-  id: number;
-  name: string;
-  genres?: any;
-}
-
-export interface Film {
-  adult: boolean;
-  backdrop_path: string;
-  genre_ids: Array<number>;
-  id: number;
-  original_language: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  release_date: string;
-  title: string;
-  vote_average: number;
-  genresToDisplay?: string[];
-}
+import { Film, Genres } from '../models/models';
 
 @Injectable({ providedIn: 'root' })
 export class FilmService {
@@ -102,6 +82,7 @@ export class FilmService {
 
   addtoLocalStorage(film: Film): void {
     if (!window.localStorage.getItem(`${film.id}`)) {
+      //window.localStorage.users.email.favourites...
       window.localStorage[film.id] = JSON.stringify(film);
     }
   }
@@ -128,3 +109,4 @@ export class FilmService {
     film.genresToDisplay = this._findGenresById(film, genres);
   }
 }
+export { Film };
