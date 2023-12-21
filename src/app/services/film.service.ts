@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin, map, of, tap } from 'rxjs';
-import { Film, Genres } from '../models/models';
+import { Film, Genres, User } from '../models/models';
+import { AuthService } from './auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class FilmService {
@@ -10,8 +11,13 @@ export class FilmService {
   recomendUrl = 'api/reccomendated';
   genres: Genres[] = [];
   popularFilms: Film[];
+  currentUser: User = this._authService.getCurrentUser();
+  parsedUsers = JSON.parse(window.localStorage['users']);
 
-  constructor(private _http: HttpClient) {}
+  constructor(
+    private _http: HttpClient,
+    private readonly _authService: AuthService
+  ) {}
 
   getGenres(): Observable<Genres[]> {
     if (!this.genres.length) {
@@ -73,29 +79,38 @@ export class FilmService {
   }
 
   parseLocalStorage(favourites: Film[]): Film[] {
-    let localKeys = Object.values(window.localStorage).map((key) =>
-      JSON.parse(key)
-    );
+    let localKeys = this.parsedUsers[`${this.currentUser.email}`].favourites;
+    localKeys = Object.values(localKeys);
     favourites.splice(0, favourites.length, ...localKeys);
     return favourites;
   }
 
   addtoLocalStorage(film: Film): void {
-    if (!window.localStorage.getItem(`${film.id}`)) {
-      //window.localStorage.users.email.favourites...
-      window.localStorage[film.id] = JSON.stringify(film);
+    if (
+      !this.parsedUsers[`${this.currentUser.email}`].favourites[`${film.id}`]
+    ) {
+      this.parsedUsers[`${this.currentUser.email}`].favourites[`${film.id}`] =
+        film;
+      this._reassignUsersInLocalStorage();
     }
   }
 
   checkLocalStorage(id: number): boolean {
-    return window.localStorage.getItem(`${id}`) ? true : false;
+    return this.parsedUsers[`${this.currentUser.email}`].favourites[`${id}`]
+      ? true
+      : false;
   }
 
   removefromLocalStorage(id: number): void {
-    window.localStorage.removeItem(`${id}`);
+    delete this.parsedUsers[`${this.currentUser.email}`].favourites[id];
+    this._reassignUsersInLocalStorage();
   }
 
-  _findGenresById(film: Film, genres: Genres[]): string[] {
+  private _reassignUsersInLocalStorage(): void {
+    window.localStorage['users'] = JSON.stringify(this.parsedUsers);
+  }
+
+  private _findGenresById(film: Film, genres: Genres[]): string[] {
     const names: string[] = [];
     film.genre_ids.forEach((genre_ids) => {
       names.push(
@@ -105,8 +120,7 @@ export class FilmService {
     return names;
   }
 
-  _assignGenres(genres: Genres[], film: Film) {
+  private _assignGenres(genres: Genres[], film: Film) {
     film.genresToDisplay = this._findGenresById(film, genres);
   }
 }
-export { Film };

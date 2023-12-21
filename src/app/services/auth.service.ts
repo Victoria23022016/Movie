@@ -17,13 +17,24 @@ export class AuthService {
   }
 
   logIn(user: User): void {
-    window.localStorage['currentUser'] = JSON.stringify(user);
+    if (this.checkUser(user.email)) {
+      //добавить уведомление что такой емейл не зареган
+      if (this.checkPassword(user)) {
+        window.localStorage['currentUser'] = JSON.stringify(user);
+      } else {
+        //добавить уведомление что пароль неверный
+      }
+    }
     //добавить уведомление о логине
   }
 
   logOut(): void {
     window.localStorage['currentUser'] = null;
     //добавить уведомление о логауте
+  }
+
+  getCurrentUser(): User {
+    return JSON.parse(window.localStorage['currentUser']);
   }
 
   checkCurrentUser(): boolean {
