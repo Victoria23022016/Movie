@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Film } from '../services/film.service';
+import { Film } from '../models/models';
 
 @Component({
   selector: 'app-film-card',

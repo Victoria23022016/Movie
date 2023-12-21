@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>Login:</h1>
+  <form [formGroup]="form">
+    <div>
+      <label>Email:</label>
+      <input type="text" formControlName="email" />
+    </div>
+    <ng-container
+      *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
+    >
+      <small>The graph must be filled!</small>
+    </ng-container>
+    <div>
+      <label>Password:</label>
+      <input type="password" formControlName="password" />
+    </div>
+    <ng-container
+      *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
+    >
+      <small>The graph must be filled!</small>
+    </ng-container>
+    <button [disabled]="form.invalid" (click)="logIn()" class="btn">
+      Submit
+    </button>
+  </form>
+  <button (click)="logOut()" class="btn">Logout</button>
+</div>

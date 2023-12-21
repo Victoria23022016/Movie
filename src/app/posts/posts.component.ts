@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FilmService, Film } from '../services/film.service';
+import { FilmService } from '../services/film.service';
 import { EMPTY, Observable, catchError } from 'rxjs';
+import { Film } from '../models/models';
 
 @Component({
   selector: 'app-posts',

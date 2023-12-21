@@ -1,6 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FilmService, Film } from '../services/film.service';
+import { FilmService } from '../services/film.service';
+import { Film } from '../models/models';
+
 import { Observable, catchError, EMPTY } from 'rxjs';
 
 @Component({

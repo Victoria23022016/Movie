@@ -1,0 +1,39 @@
+<div class="container">
+  <h1>If you don't have an account yet, please register:</h1>
+  <form [formGroup]="form">
+    <div>
+      <label>Email:</label>
+      <input type="text" formControlName="email" />
+    </div>
+    <ng-container
+      *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
+    >
+      <small *ngIf="form.get('email')?.errors?.['required']"
+        >The graph must be filled!</small
+      >
+      <small *ngIf="form.get('email')?.errors?.['email']"
+        >This email is not correct!</small
+      >
+      <small *ngIf="form.get('email')?.errors?.['takenEmail']"
+        >This email is already taken!</small
+      >
+    </ng-container>
+    <div>
+      <label>Password:</label>
+      <input type="password" formControlName="password" />
+    </div>
+    <ng-container
+      *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
+    >
+      <small *ngIf="form.get('password')?.errors?.['required']"
+        >The graph must be filled!</small
+      >
+      <small *ngIf="form.get('password')?.errors?.['minlength']"
+        >the password must include at least 5 symbols!</small
+      >
+    </ng-container>
+    <button [disabled]="form.invalid" (click)="submit()" class="btn">
+      Submit
+    </button>
+  </form>
+</div>
