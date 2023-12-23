@@ -32,10 +32,11 @@ export class DetailedFilmComponent implements OnInit {
             return EMPTY;
           })
         );
-
-        this.isFavourite = this._filmService.checkLocalStorage(+id)
-          ? true
-          : false;
+        if (this._filmService.checkFavouritesInLocalStorage()) {
+          this.isFavourite = this._filmService.checkFilmInLocalStorage(+id)
+            ? true
+            : false;
+        }
 
         this.reccomendated$ = this._filmService.getReccomendations();
       }

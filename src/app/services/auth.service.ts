@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/models';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  constructor(private readonly _notification: NzNotificationService) {}
+
   addUserToLocalStorage(user: User): void {
     if (window.localStorage['users']) {
       const parsedUsers = JSON.parse(window.localStorage['users']);
@@ -14,23 +17,25 @@ export class AuthService {
       });
     }
     window.localStorage['currentUser'] = JSON.stringify(user);
+    this._notification.success('', 'Your authorization was successful!');
   }
 
   logIn(user: User): void {
     if (this.checkUser(user.email)) {
-      //добавить уведомление что такой емейл не зареган
       if (this.checkPassword(user)) {
         window.localStorage['currentUser'] = JSON.stringify(user);
+        this._notification.success('', 'You are logged in!');
       } else {
-        //добавить уведомление что пароль неверный
+        this._notification.error('', 'The password is wrong!');
       }
+    } else {
+      this._notification.error('', 'This email is not registered!');
     }
-    //добавить уведомление о логине
   }
 
   logOut(): void {
     window.localStorage['currentUser'] = null;
-    //добавить уведомление о логауте
+    this._notification.create('warning', '', 'You logged out!');
   }
 
   getCurrentUser(): User {
@@ -49,7 +54,6 @@ export class AuthService {
     const checkedUser = JSON.parse(window.localStorage['users'])[
       `${user.email}`
     ];
-    //добавить уведомление о неверном пароле?
     return checkedUser.password === user.password ? true : false;
   }
 }

@@ -11,8 +11,6 @@ export class FilmService {
   recomendUrl = 'api/reccomendated';
   genres: Genres[] = [];
   popularFilms: Film[];
-  currentUser: User = this._authService.getCurrentUser();
-  parsedUsers = JSON.parse(window.localStorage['users']);
 
   constructor(
     private _http: HttpClient,
@@ -79,35 +77,44 @@ export class FilmService {
   }
 
   parseLocalStorage(favourites: Film[]): Film[] {
-    let localKeys = this.parsedUsers[`${this.currentUser.email}`].favourites;
+    const currentUser: User = this._authService.getCurrentUser();
+    const parsedUsers = JSON.parse(window.localStorage['users']);
+    let localKeys = parsedUsers[`${currentUser.email}`].favourites;
     localKeys = Object.values(localKeys);
     favourites.splice(0, favourites.length, ...localKeys);
     return favourites;
   }
 
   addtoLocalStorage(film: Film): void {
-    if (
-      !this.parsedUsers[`${this.currentUser.email}`].favourites[`${film.id}`]
-    ) {
-      this.parsedUsers[`${this.currentUser.email}`].favourites[`${film.id}`] =
-        film;
-      this._reassignUsersInLocalStorage();
-    }
+    const currentUser: User = this._authService.getCurrentUser();
+    const parsedUsers = JSON.parse(window.localStorage['users']);
+    parsedUsers[`${currentUser.email}`].favourites[`${film.id}`] = film;
+    this._reassignUsersInLocalStorage(parsedUsers);
   }
 
-  checkLocalStorage(id: number): boolean {
-    return this.parsedUsers[`${this.currentUser.email}`].favourites[`${id}`]
+  checkFavouritesInLocalStorage(): boolean {
+    const currentUser: User = this._authService.getCurrentUser();
+    const parsedUsers = JSON.parse(window.localStorage['users']);
+    return parsedUsers[`${currentUser.email}`].favourites ? true : false;
+  }
+
+  checkFilmInLocalStorage(id: number): boolean {
+    const currentUser: User = this._authService.getCurrentUser();
+    const parsedUsers = JSON.parse(window.localStorage['users']);
+    return parsedUsers[`${currentUser.email}`].favourites[`${id}`]
       ? true
       : false;
   }
 
   removefromLocalStorage(id: number): void {
-    delete this.parsedUsers[`${this.currentUser.email}`].favourites[id];
-    this._reassignUsersInLocalStorage();
+    const currentUser: User = this._authService.getCurrentUser();
+    const parsedUsers = JSON.parse(window.localStorage['users']);
+    delete parsedUsers[`${currentUser.email}`].favourites[id];
+    this._reassignUsersInLocalStorage(parsedUsers);
   }
 
-  private _reassignUsersInLocalStorage(): void {
-    window.localStorage['users'] = JSON.stringify(this.parsedUsers);
+  private _reassignUsersInLocalStorage(parsedUsers: Object): void {
+    window.localStorage['users'] = JSON.stringify(parsedUsers);
   }
 
   private _findGenresById(film: Film, genres: Genres[]): string[] {

@@ -13,7 +13,9 @@ export class FavouritesComponent implements OnInit {
   constructor(private _filmService: FilmService) {}
 
   ngOnInit(): void {
-    this.favourites = this._filmService.parseLocalStorage(this.favourites);
+    if (this._filmService.checkFavouritesInLocalStorage()) {
+      this.favourites = this._filmService.parseLocalStorage(this.favourites);
+    }
   }
 
   removeFromFavourites($event: MouseEvent, film: Film): void {
