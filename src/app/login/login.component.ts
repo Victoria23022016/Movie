@@ -28,12 +28,11 @@ export class LoginComponent {
   logIn(): void {
     this.formData = { ...this.form.value };
     this._authService.logIn(this.formData);
+    this.form.reset();
     this._router.navigate(['/home']);
-    console.log(window.localStorage);
   }
 
   logOut(): void {
     this._authService.logOut();
-    console.log(window.localStorage);
   }
 }
