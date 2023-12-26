@@ -10,6 +10,7 @@
     <li class="navbar__link" routerLinkActive="navbar__link_active">
       <a [routerLink]="['/favourites']">Go to favourites</a>
     </li>
+    <img class="navbar__icon" src="../assets/images/icons/star.svg" />
     <li class="navbar__link" routerLinkActive="navbar__link_active">
       <a [routerLink]="['/auth']">Go to Auth</a>
     </li>
@@ -18,6 +19,17 @@
     </li>
   </ul>
 </nav>
-<div class="container">
+<main class="container">
   <router-outlet></router-outlet>
-</div>
+</main>
+<footer class="footer">
+  <div class="footer__content">
+    <p class="footer__text">
+      This project was made as part of a demonstration of skills in working with
+      the Angular framework. GitHub account of the project creator -
+      <a href="https://github.com/Victoria23022016" class="footer__link"
+        >https://github.com/Victoria23022016</a
+      >
+    </p>
+  </div>
+</footer>

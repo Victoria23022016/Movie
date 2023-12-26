@@ -35,31 +35,9 @@ body {
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
   padding-top: 1rem;
-}
-
-.card {
-  padding: 1rem;
-  border: var(--card-border) 1px dotted;
-  margin: 0.7rem 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.card__title {
-  font-size: 2em;
-  font-weight: bold;
-}
-
-.card__info {
-  font-size: 1em;
-}
-
-.card__genres {
-  font-size: 1em;
-  font-style: italic;
 }
 
 .main {
@@ -135,4 +113,40 @@ ul {
   font-size: 1.2rem;
   border: 1px solid var(--input-border);
   margin: 1.2rem 0;
+}
+
+.navbar__icon {
+  height: 20px;
+  width: 19px;
+  color: wheat;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 300px);
+  grid-template-rows: auto;
+  justify-items: stretch;
+  align-items: baseline;
+  gap: 27.8px;
+}
+
+.footer {
+  background-color: #2e353d; /*переписать в переменную */
+  color: #fff;
+  font-family: "Roboto", Arial, sans-serif;
+  padding: 50px 0 65px 0;
+}
+
+.footer__content {
+  margin: 0 auto;
+  max-width: 540px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.footer__link {
+  color: #919fa4; /*переписать в переменную */
 }
