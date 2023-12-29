@@ -1,0 +1,28 @@
+.card_small {
+  display: flex;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #cfd7db; /*поменять на border-bottom*/
+  padding: 5px;
+  width: 100%;
+}
+
+.card__image {
+  border-radius: 2px;
+}
+
+.card__info_small {
+  margin-left: 5px;
+}
+
+.card__title_small {
+  margin: 0;
+  font-size: 15px;
+  color: #444b54;
+}
+
+.card__text_small {
+  color: #99abb6;
+  font-size: 13px;
+  margin-top: 5px;
+}

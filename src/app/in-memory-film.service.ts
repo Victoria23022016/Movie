@@ -403,7 +403,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           'An exploratory dive into the deepest depths of the ocean of a daring research team spirals into chaos when a malevolent mining operation threatens their mission and forces them into a high-stakes battle for survival.',
         popularity: 943.693,
-        poster_path: '/4m1Au3YkjqsxF8iwQy0fPYSxE0h.jpg',
+        poster_path: '../assets/images/posters/meg-2.jpg',
         release_date: '2023-08-02',
         title: 'Meg 2: The Trench',
         video: false,
@@ -420,7 +420,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           "It follows Li Xin and Wang Qi as they stand on the battlefield for the first time to fight off an invasion by Zhao, and it also follows Ying Zheng's unknown past.",
         popularity: 940.678,
-        poster_path: '/qnmV2Wq2H5ThqASx6vcwh25sUiG.jpg',
+        poster_path: '../assets/images/posters/kingdom.jpg',
         release_date: '2023-07-28',
         title: 'Kingdom 3: The Flame of Fate',
         video: false,
@@ -437,7 +437,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           'After reuniting with Gwen Stacy, Brooklyn’s full-time, friendly neighborhood Spider-Man is catapulted across the Multiverse, where he encounters the Spider Society, a team of Spider-People charged with protecting the Multiverse’s very existence. But when the heroes clash on how to handle a new threat, Miles finds himself pitted against the other Spiders and must set out on his own to save those he loves most.',
         popularity: 849.228,
-        poster_path: '/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg',
+        poster_path: '../assets/images/posters/spiderman.jpg',
         release_date: '2023-05-31',
         title: 'Spider-Man: Across the Spider-Verse',
         video: false,

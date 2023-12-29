@@ -21,6 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth/auth.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgOptimizedImage } from '@angular/common';
+import { FilmCardSmallComponent } from './film-card-small/film-card-small.component';
 
 @NgModule({
   declarations: [
@@ -33,9 +34,9 @@ import { NgOptimizedImage } from '@angular/common';
     HomeComponent,
     FilmCardComponent,
     ShadowingDirective,
-
     AuthComponent,
     LoginComponent,
+    FilmCardSmallComponent,
   ],
   imports: [
     BrowserModule,
