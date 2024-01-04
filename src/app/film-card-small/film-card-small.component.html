@@ -1,4 +1,8 @@
-<div class="card_small" [routerLink]="['/detailed', film.id]">
+<div
+  class="card card__inner_small"
+  [routerLink]="['/detailed', film.id]"
+  appHighlight
+>
   <img
     class="card__image"
     ngSrc="{{ film.poster_path }}"

@@ -1,0 +1,25 @@
+.detailed {
+  font-family: "Arial", sans-serif;
+  font-weight: normal;
+  color: var(--dark-grey);
+  font-size: 1.4rem;
+}
+
+.detailed_bold {
+  font-weight: bold;
+}
+
+.detailed__image {
+  border-radius: 0.4rem;
+}
+
+.detailed__info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+  width: 65rem;
+}
+
+.detailed__icon :hover {
+  fill: var(--white);
+}

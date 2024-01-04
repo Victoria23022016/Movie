@@ -13,7 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FilmCardComponent } from './film-card/film-card.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-film.service';
-import { ShadowingDirective } from './directives/shadowing.directive';
+import { HighlightDirective } from './directives/highlight.directive';
 import { AuthService } from './services/auth.service';
 import { AuthComponent } from './auth/auth.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -33,7 +33,7 @@ import { FilmCardSmallComponent } from './film-card-small/film-card-small.compon
     ErrorComponent,
     HomeComponent,
     FilmCardComponent,
-    ShadowingDirective,
+    HighlightDirective,
     AuthComponent,
     LoginComponent,
     FilmCardSmallComponent,
