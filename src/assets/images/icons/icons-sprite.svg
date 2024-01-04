@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+<defs>
+<symbol id="star" viewBox="0 0 32 32">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798z"></path>
+</symbol>
+
+<symbol id="home" viewBox="0 0 32 32">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M32 18.451l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+</symbol>
+
+<symbol id="exit" viewBox="0 0 32 32">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M24 20v-4h-10v-4h10v-4l6 6zM22 18v8h-10v6l-12-6v-26h22v10h-2v-8h-16l8 4v18h8v-6z"></path>
+</symbol>
+
+</defs>
+</svg>

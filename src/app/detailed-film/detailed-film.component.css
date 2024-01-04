@@ -1,0 +1,43 @@
+.detailed {
+  font-family: "Arial", sans-serif;
+  font-weight: normal;
+  color: #333;
+  font-size: 14px;
+}
+
+.detailed__inner {
+  margin: 50px 0 50px 0;
+  display: flex;
+}
+
+.detailed__image {
+  border-radius: 4px;
+}
+
+.detailed__info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  width: 650px;
+}
+
+.detailed__btn {
+  width: 100px;
+  height: 40px;
+}
+
+.detailed__icon {
+  width: 20px;
+  height: 20px;
+  fill: #cfd7db;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.detailed__icon :hover {
+  fill: white;
+}
+
+.detailed__text_bold {
+  font-weight: bold;
+}

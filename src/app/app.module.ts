@@ -20,6 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth/auth.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgOptimizedImage } from '@angular/common';
+import { FilmCardSmallComponent } from './film-card-small/film-card-small.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ShadowingDirective,
     AuthComponent,
     LoginComponent,
+    FilmCardSmallComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       dataEncapsulation: false,
     }),
     BrowserAnimationsModule,
+    NgOptimizedImage,
   ],
   providers: [FilmService, AuthService, AuthGuard],
   bootstrap: [AppComponent],

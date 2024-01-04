@@ -1,23 +1,76 @@
-<nav class="navbar">
-  <ul>
-    <li
-      class="navbar__link"
-      routerLinkActive="navbar__link_active"
-      [routerLinkActiveOptions]="{ exact: true }"
-    >
-      <a [routerLink]="['/home']">Go to home page</a>
-    </li>
-    <li class="navbar__link" routerLinkActive="navbar__link_active">
-      <a [routerLink]="['/favourites']">Go to favourites</a>
-    </li>
-    <li class="navbar__link" routerLinkActive="navbar__link_active">
-      <a [routerLink]="['/auth']">Go to Auth</a>
-    </li>
-    <li class="navbar__link" routerLinkActive="navbar__link_active">
-      <a [routerLink]="['/login']">Go to login and logout</a>
-    </li>
-  </ul>
-</nav>
-<div class="container">
-  <router-outlet></router-outlet>
+<div class="page">
+  <header class="header header__inner">
+    <div class="container">
+      <nav class="navbar">
+        <app-search></app-search>
+        <div [routerLink]="['/home']">
+          <svg
+            class="navbar__icon"
+            xmlns="http://www.w3.org/2000/svg"
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            viewBox="0 0 32 32"
+          >
+            <path
+              d="M32 18.451l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18v12h-8v-8h-8v8h-8v-12l12-9z"
+            ></path>
+          </svg>
+        </div>
+        <div [routerLink]="['/favourites']">
+          <svg
+            class="navbar__icon"
+            xmlns="http://www.w3.org/2000/svg"
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            viewBox="0 0 32 32"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798z"
+            ></path>
+          </svg>
+        </div>
+        <div [routerLink]="['/login']">
+          <svg
+            class="navbar__icon"
+            xmlns="http://www.w3.org/2000/svg"
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            viewBox="0 0 32 32"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M24 20v-4h-10v-4h10v-4l6 6zM22 18v8h-10v6l-12-6v-26h22v10h-2v-8h-16l8 4v18h8v-6z"
+            ></path>
+          </svg>
+        </div>
+        <div routerLinkActive="navbar__link_active">
+          <a
+            class="navbar__link"
+            routerLinkActive="navbar__link_active"
+            [routerLink]="['/auth']"
+            >Auth</a
+          >
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container"></div>
+    <router-outlet></router-outlet>
+  </main>
+  <footer class="footer">
+    <div class="footer__content">
+      <p class="footer__text">
+        This project was made as part of a demonstration of skills in working
+        with the Angular framework. GitHub account of the project creator -
+        <a href="https://github.com/Victoria23022016" class="footer__link"
+          >https://github.com/Victoria23022016</a
+        >
+      </p>
+    </div>
+  </footer>
 </div>

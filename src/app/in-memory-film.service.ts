@@ -37,7 +37,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           'Barbie and Ken are having the time of their lives in the colorful and seemingly perfect world of Barbie Land. However, when they get a chance to go to the real world, they soon discover the joys and perils of living among humans.',
         popularity: 3447.567,
-        poster_path: '/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg',
+        poster_path: '../assets/images/posters/barbie.jpeg',
         release_date: '2023-07-19',
         title: 'Barbie',
         video: false,
@@ -46,7 +46,7 @@ export class InMemoryDataService implements InMemoryDbService {
       },
       {
         adult: false,
-        backdrop_path: '/yF1eOkaYvwiORauRCPWznV9xVvi.jpg',
+        backdrop_path: '../assets/images/posters/theflesh.jpeg',
         genre_ids: [28, 12, 878],
         id: 298618,
         original_language: 'en',
@@ -54,7 +54,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           "When his attempt to save his family inadvertently alters the future, Barry Allen becomes trapped in a reality in which General Zod has returned and there are no Super Heroes to turn to. In order to save the world that he is in and return to the future that he knows, Barry's only hope is to race for his life. But will making the ultimate sacrifice be enough to reset the universe?",
         popularity: 2986.048,
-        poster_path: '/rktDFPbfHfUbArZ6OOOKsXcv0Bm.jpg',
+        poster_path: '../assets/images/posters/theflash.jpg',
         release_date: '2023-06-13',
         title: 'The Flash',
         video: false,
@@ -71,7 +71,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           'When a new threat capable of destroying the entire planet emerges, Optimus Prime and the Autobots must team up with a powerful faction known as the Maximals. With the fate of humanity hanging in the balance, humans Noah and Elena will do whatever it takes to help the Transformers as they engage in the ultimate battle to save Earth.',
         popularity: 2904.721,
-        poster_path: '/gPbM0MK8CP8A174rmUwGsADNYKD.jpg',
+        poster_path: '../assets/images/posters/transformers.jpeg',
         release_date: '2023-06-06',
         title: 'Transformers: Rise of the Beasts',
         video: false,
@@ -88,7 +88,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           'The youngest of King Triton’s daughters, and the most defiant, Ariel longs to find out more about the world beyond the sea, and while visiting the surface, falls for the dashing Prince Eric. With mermaids forbidden to interact with humans, Ariel makes a deal with the evil sea witch, Ursula, which gives her a chance to experience life on land, but ultimately places her life – and her father’s crown – in jeopardy.',
         popularity: 2203.26,
-        poster_path: '/ym1dxyOk4jFcSl4Q2zmRrA5BEEN.jpg',
+        poster_path: '../assets/images/posters/littlemermaid.jpg',
         release_date: '2023-05-18',
         title: 'The Little Mermaid',
         video: false,
@@ -105,7 +105,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           'A life of an ordinary Parisian teenager Marinette goes superhuman when she becomes Ladybug. Bestowed with magical powers of creation, Ladybug must unite with her opposite, Cat Noir, to save Paris as a new villain unleashes chaos unto the city.',
         popularity: 2047.765,
-        poster_path: '/bBON9XO9Ek0DjRwMBnJNCwC96Cd.jpg',
+        poster_path: '../assets/images/posters/miraculous.jpg',
         release_date: '2023-07-05',
         title: 'Miraculous: Ladybug & Cat Noir, The Movie',
         video: false,
@@ -122,7 +122,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           'In San Francisco, Jill Valentine is dealing with a zombie outbreak and a new T-Virus, Leon Kennedy is on the trail of a kidnapped DARPA scientist, and Claire Redfield is investigating a monstrous fish that is killing whales in the bay. Joined by Chris Redfield and Rebecca Chambers, they discover the trail of clues from their separate cases all converge on the same location, Alcatraz Island, where a new evil has taken residence and awaits their arrival.',
         popularity: 1968.89,
-        poster_path: '/qayga07ICNDswm0cMJ8P3VwklFZ.jpg',
+        poster_path: '../assets/images/posters/resident-evil.jpg',
         release_date: '2023-06-22',
         title: 'Resident Evil: Death Island',
         video: false,
@@ -139,7 +139,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           'Peter Quill, still reeling from the loss of Gamora, must rally his team around him to defend the universe along with protecting one of their own. A mission that, if not completed successfully, could quite possibly lead to the end of the Guardians as we know them.',
         popularity: 1766.254,
-        poster_path: '/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg',
+        poster_path: '../assets/images/posters/guardians.jpg',
         release_date: '2023-05-03',
         title: 'Guardians of the Galaxy Vol. 3',
         video: false,
@@ -156,7 +156,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           'A man forced to bear power and stripped of humanity. A woman skeptical of happiness. Takeshi Hongo, an Augmentation made by SHOCKER, and Ruriko Midorikawa, a rebel of the organization, escape while fighting off assassins. What’s justice? What’s evil? Will this violence end? Despite his power, Hongo tries to remain human. Along with freedom, Ruriko has regained a heart. What paths will they choose?',
         popularity: 1554.534,
-        poster_path: '/9dTO2RygcDT0cQkawABw4QkDegN.jpg',
+        poster_path: '../assets/images/posters/shin-kamen-rider.jpg',
         release_date: '2023-03-17',
         title: 'Shin Kamen Rider',
         video: false,
@@ -173,7 +173,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           'Until now, the Justice League has been a loose association of superpowered individuals. But when they are swept away to Warworld, a place of unending brutal gladiatorial combat, Batman, Superman, Wonder Woman and the others must somehow unite to form an unbeatable resistance able to lead an entire planet to freedom.',
         popularity: 1508.04,
-        poster_path: '/qmevjlNDaWoEughGlXFWHbQ4TaR.jpg',
+        poster_path: '../assets/images/posters/justice-league.jpg',
         release_date: '2023-07-25',
         title: 'Justice League: Warworld',
         video: false,
@@ -190,7 +190,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           "Over many missions and against impossible odds, Dom Toretto and his family have outsmarted, out-nerved and outdriven every foe in their path. Now, they confront the most lethal opponent they've ever faced: A terrifying threat emerging from the shadows of the past who's fueled by blood revenge, and who is determined to shatter this family and destroy everything—and everyone—that Dom loves, forever.",
         popularity: 1423.801,
-        poster_path: '/fiVW06jE7z9YnO4trhaMEdclSiC.jpg',
+        poster_path: '../assets/images/posters/fast-x.jpg',
         release_date: '2023-05-17',
         title: 'Fast X',
         video: false,
@@ -207,7 +207,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           "Ruby Gillman, a sweet and awkward high school student, discovers she's a direct descendant of the warrior kraken queens. The kraken are sworn to protect the oceans of the world against the vain, power-hungry mermaids. Destined to inherit the throne from her commanding grandmother, Ruby must use her newfound powers to protect those she loves most.",
         popularity: 1348.727,
-        poster_path: '/kgrLpJcLBbyhWIkK7fx1fM4iSvf.jpg',
+        poster_path: '../assets/images/posters/teenage-kraken.jpg',
         release_date: '2023-06-28',
         title: 'Ruby Gillman, Teenage Kraken',
         video: false,
@@ -224,7 +224,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           "To put their demons to rest once and for all, Josh Lambert and a college-aged Dalton Lambert must go deeper into The Further than ever before, facing their family's dark past and a host of new and more horrifying terrors that lurk behind the red door.",
         popularity: 1282.953,
-        poster_path: '/azTC5osYiqei1ofw6Z3GmUrxQbi.jpg',
+        poster_path: '../assets/images/posters/insidious-the-red.jpg',
         release_date: '2023-07-05',
         title: 'Insidious: The Red Door',
         video: false,
@@ -242,7 +242,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           "A nationwide manhunt for Hank Venture leads to untold dangers and unexpected revelations, while The Monarch is literally out for Dr Venture's blood. An imposing evil from the past reemerges to wreak havoc on the Ventures, The Guild, and even the Monarch marriage—it will take friends and foes alike to restore the Ventures' world to order… or end it once and for all.",
         popularity: 1259.804,
-        poster_path: '/lLXFw6ZylfMf8pKAzAmVc3qDaPW.jpg',
+        poster_path: '../assets/images/posters/venture.jpg',
         release_date: '2023-07-21',
         title: 'The Venture Bros.: Radiant is the Blood of the Baboon Heart',
         video: false,
@@ -259,7 +259,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           'Mavka — a Soul of the Forest and its Warden — faces an impossible choice between love and her duty as guardian to the Heart of the Forest, when she falls in love with a human — the talented young musician Lukas.',
         popularity: 1152.803,
-        poster_path: '/eeJjd9JU2Mdj9d7nWRFLWlrcExi.jpg',
+        poster_path: '../assets/images/posters/mavka.jpg',
         release_date: '2023-03-02',
         title: 'Mavka: The Forest Song',
         video: false,
@@ -276,7 +276,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           'Two elite soldiers must escort civilians through a gauntlet of gunfire and explosions.',
         popularity: 1127.283,
-        poster_path: '/zsbolOkw8RhTU4DKOrpf4M7KCmi.jpg',
+        poster_path: '../assets/images/posters/hidden-strike.jpg',
         release_date: '2023-07-06',
         title: 'Hidden Strike',
         video: false,
@@ -293,7 +293,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           'A gunned down Navy SEAL Master Chief must guide a child to safety through a gauntlet of hostile Taliban insurgents and survive the brutal Afghanistan wilderness.',
         popularity: 1120.368,
-        poster_path: '/jP2ik17jvKiV5sGEknMFbZv7WAe.jpg',
+        poster_path: '../assets/images/posters/war-horse.jpg',
         release_date: '2023-06-30',
         title: 'Warhorse One',
         video: false,
@@ -310,7 +310,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           'The story of J. Robert Oppenheimer’s role in the development of the atomic bomb during World War II.',
         popularity: 1043.728,
-        poster_path: '/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
+        poster_path: '../assets/images/posters/oppenheimer.jpg',
         release_date: '2023-07-19',
         title: 'Oppenheimer',
         video: false,
@@ -327,7 +327,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           'An exploratory dive into the deepest depths of the ocean of a daring research team spirals into chaos when a malevolent mining operation threatens their mission and forces them into a high-stakes battle for survival.',
         popularity: 943.693,
-        poster_path: '/4m1Au3YkjqsxF8iwQy0fPYSxE0h.jpg',
+        poster_path: '../assets/images/posters/meg-2.jpg',
         release_date: '2023-08-02',
         title: 'Meg 2: The Trench',
         video: false,
@@ -344,7 +344,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           "It follows Li Xin and Wang Qi as they stand on the battlefield for the first time to fight off an invasion by Zhao, and it also follows Ying Zheng's unknown past.",
         popularity: 940.678,
-        poster_path: '/qnmV2Wq2H5ThqASx6vcwh25sUiG.jpg',
+        poster_path: '../assets/images/posters/kingdom.jpg',
         release_date: '2023-07-28',
         title: 'Kingdom 3: The Flame of Fate',
         video: false,
@@ -361,7 +361,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           'After reuniting with Gwen Stacy, Brooklyn’s full-time, friendly neighborhood Spider-Man is catapulted across the Multiverse, where he encounters the Spider Society, a team of Spider-People charged with protecting the Multiverse’s very existence. But when the heroes clash on how to handle a new threat, Miles finds himself pitted against the other Spiders and must set out on his own to save those he loves most.',
         popularity: 849.228,
-        poster_path: '/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg',
+        poster_path: '../assets/images/posters/spiderman.jpg',
         release_date: '2023-05-31',
         title: 'Spider-Man: Across the Spider-Verse',
         video: false,
@@ -403,7 +403,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           'An exploratory dive into the deepest depths of the ocean of a daring research team spirals into chaos when a malevolent mining operation threatens their mission and forces them into a high-stakes battle for survival.',
         popularity: 943.693,
-        poster_path: '/4m1Au3YkjqsxF8iwQy0fPYSxE0h.jpg',
+        poster_path: '../assets/images/posters/meg-2.jpg',
         release_date: '2023-08-02',
         title: 'Meg 2: The Trench',
         video: false,
@@ -420,7 +420,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           "It follows Li Xin and Wang Qi as they stand on the battlefield for the first time to fight off an invasion by Zhao, and it also follows Ying Zheng's unknown past.",
         popularity: 940.678,
-        poster_path: '/qnmV2Wq2H5ThqASx6vcwh25sUiG.jpg',
+        poster_path: '../assets/images/posters/kingdom.jpg',
         release_date: '2023-07-28',
         title: 'Kingdom 3: The Flame of Fate',
         video: false,
@@ -437,7 +437,7 @@ export class InMemoryDataService implements InMemoryDbService {
         overview:
           'After reuniting with Gwen Stacy, Brooklyn’s full-time, friendly neighborhood Spider-Man is catapulted across the Multiverse, where he encounters the Spider Society, a team of Spider-People charged with protecting the Multiverse’s very existence. But when the heroes clash on how to handle a new threat, Miles finds himself pitted against the other Spiders and must set out on his own to save those he loves most.',
         popularity: 849.228,
-        poster_path: '/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg',
+        poster_path: '../assets/images/posters/spiderman.jpg',
         release_date: '2023-05-31',
         title: 'Spider-Man: Across the Spider-Verse',
         video: false,

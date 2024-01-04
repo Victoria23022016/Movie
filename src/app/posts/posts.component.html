@@ -1,6 +1,7 @@
 <div class="container">
-  <h1 class="main__title">Popular films:</h1>
-  <div appShadowing class="card" *ngFor="let film of popularFilms$ | async">
-    <app-film-card [film]="film"></app-film-card>
+  <div class="grid grid__wrapper">
+    <div *ngFor="let film of popularFilms$ | async">
+      <app-film-card [film]="film"></app-film-card>
+    </div>
   </div>
 </div>

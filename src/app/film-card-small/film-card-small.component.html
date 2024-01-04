@@ -1,0 +1,14 @@
+<div class="card_small" [routerLink]="['/detailed', film.id]">
+  <img
+    class="card__image"
+    ngSrc="{{ film.poster_path }}"
+    width="42"
+    height="63"
+    alt="{{ film.title }}"
+  />
+
+  <div class="card__info_small">
+    <p class="card__title_small">{{ film.title }}</p>
+    <p class="card__text_small">{{ film.release_date | date : "y" }}</p>
+  </div>
+</div>

@@ -1,22 +1,47 @@
+.header {
+  background-color: #2e353d;
+  vertical-align: middle;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.header__inner {
+  width: 100%;
+  height: 60px;
+}
+
 .navbar {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 0.7rem 2rem;
-  z-index: 1;
-  width: 100%;
-  opacity: 0.9;
-  margin-bottom: 1rem;
-  background: var(--navbar);
+  gap: 20px;
 }
 
-.navbar__link a {
+.navbar__link {
   font-size: 1rem;
-  color: white;
+  color: #cfd7db;
+  cursor: pointer;
 }
 
-.navbar__link_active a {
+.navbar__link_active {
   font-weight: bold;
   color: var(--main-font);
   cursor: default;
+}
+
+.navbar__icon {
+  width: 20px;
+  height: 20px;
+  fill: #cfd7db;
+  cursor: pointer;
+}
+
+.navbar__icon :hover {
+  fill: white;
+}
+
+.navbar__link :hover {
+  fill: white;
 }
