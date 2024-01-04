@@ -1,0 +1,12 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 30rem);
+  grid-template-rows: auto;
+  justify-items: stretch;
+  align-items: baseline;
+  gap: 2.78rem;
+}
+
+.grid__wrapper {
+  margin-top: 10rem;
+}

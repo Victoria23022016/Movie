@@ -1,0 +1,14 @@
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding-top: 2rem;
+}
+
+.container__inner {
+  margin: 5rem 0 5rem 0;
+  display: flex;
+}
+
+.container__inner_column {
+  flex-direction: column;
+}

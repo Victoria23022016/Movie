@@ -12,7 +12,7 @@
     <div class="card__inner_popup">
       <p class="card__title_popup">{{ film.title }}</p>
       <p class="card__text_popup">
-        {{ film.release_date | date }}
+        {{ film.release_date | date : "y" }}
       </p>
       <div class="card__text_popup">
         <span *ngFor="let genre of film.genresToDisplay">{{ genre }} </span>

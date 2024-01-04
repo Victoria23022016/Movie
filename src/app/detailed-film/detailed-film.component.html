@@ -1,6 +1,6 @@
 <ng-container *ngIf="film$ | async as film">
   <div class="container">
-    <div class="detailed detailed__inner">
+    <div class="detailed container__inner">
       <img
         class="detailed__image"
         ngSrc="{{ film.poster_path }}"
@@ -8,31 +8,31 @@
         height="330"
         alt="{{ film.title }}"
       />
-      <div class="detailed__info">
-        <h1 class="card__title">{{ film.title }}</h1>
+      <div class="detailed detailed__info">
+        <h1 class="detailed_bold">{{ film.title }}</h1>
         <p>
-          <span class="detailed__text_bold">Release date:</span>
+          <span class="detailed_bold">Release date:</span>
           {{ film.release_date | date : "y" }}
         </p>
         <p>
-          <span class="detailed__text_bold">Description:</span>
+          <span class="detailed_bold">Description:</span>
           {{ film.overview }}
         </p>
         <p>
-          <span class="detailed__text_bold">Original language:</span>
+          <span class="detailed_bold">Original language:</span>
           {{ film.original_language | uppercase }}
         </p>
         <p>
-          <span class="detailed__text_bold">Rating:</span>
+          <span class="detailed_bold">Rating:</span>
           {{ film.vote_average }}
         </p>
         <p>
-          <span class="detailed__text_bold">Popularity:</span>
+          <span class="detailed_bold">Popularity:</span>
           {{ film.popularity }}
         </p>
 
         <button
-          class="btn detailed__btn"
+          class="btn btn__inner"
           (click)="addToFavourites(film)"
           [ngClass]="{
             btn_activated: isFavourite,
@@ -40,7 +40,7 @@
           }"
         >
           <svg
-            class="detailed__icon"
+            class="btn__icon"
             xmlns="http://www.w3.org/2000/svg"
             fill-rule="evenodd"
             clip-rule="evenodd"

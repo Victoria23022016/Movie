@@ -1,12 +1,12 @@
-<div class="form_search">
+<div class="search search__inner">
   <input
-    class="form__input_search"
-    #searchBox
+    class="search__input"
     type="text"
     (input)="search(searchBox.value)"
+    #searchBox
   />
   <svg
-    class="form__icon"
+    class="search__icon"
     xmlns="http://www.w3.org/2000/svg"
     fill-rule="evenodd"
     clip-rule="evenodd"
@@ -17,12 +17,9 @@
     ></path>
   </svg>
 
-  <div>
-    <div class="form__results" *ngIf="searchBox.focus">
-      <!--если ввоодится в данный момент-->
-      <div *ngFor="let film of films$ | async">
-        <app-film-card-small [film]="film"></app-film-card-small>
-      </div>
+  <div class="search__results">
+    <div *ngFor="let film of films$ | async">
+      <app-film-card-small [film]="film"></app-film-card-small>
     </div>
   </div>
 </div>

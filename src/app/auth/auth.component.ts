@@ -31,7 +31,7 @@ export class AuthComponent implements OnInit {
         Validators.minLength(5),
       ]),
     });
-    if (window.localStorage && this._authService.checkCurrentUser()) {
+    if (window.localStorage.length && this._authService.checkCurrentUser()) {
       this._router.navigate(['/home']);
     }
   }
@@ -40,6 +40,5 @@ export class AuthComponent implements OnInit {
     this.formData = { ...this.form.value, favourites: {} };
     this._authService.addUserToLocalStorage(this.formData);
     this._router.navigate(['/home']);
-    console.log(window.localStorage);
   }
 }
