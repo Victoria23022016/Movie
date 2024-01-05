@@ -1,7 +1,5 @@
 <div class="container">
-  <ng-container>
-    <nz-spin-basic class="container__inner_centred"></nz-spin-basic>
-  </ng-container>
+  @if(popularFilms$ | async ) {
   <div class="grid grid__wrapper">
     <div *ngFor="let film of getPaginatedFilms(popularFilms$ | async)">
       <app-film-card [film]="film"></app-film-card>
@@ -14,4 +12,5 @@
     [currentPage]="index"
     (onClick)="changePage($event)"
   ></nz-pagination-basic>
+  } @else {<nz-spin-basic class="container__inner_centred"></nz-spin-basic>}
 </div>
