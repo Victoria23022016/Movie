@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, forkJoin, map, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, forkJoin, map, of, tap } from 'rxjs';
 import { Film, Genres, User } from '../models/models';
 import { AuthService } from './auth.service';
 
@@ -34,6 +34,7 @@ export class FilmService {
       map(([genres, films]) =>
         films.map((film) => {
           this._assignGenres(genres, film);
+
           return film;
         })
       )
