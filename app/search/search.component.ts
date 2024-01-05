@@ -1,5 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FilmService, Film } from '../services/film.service';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { FilmService } from '../services/film.service';
 import {
   Observable,
   Subject,
@@ -7,6 +13,7 @@ import {
   distinctUntilChanged,
   mergeMap,
 } from 'rxjs';
+import { Film } from '../models/models';
 
 @Component({
   selector: 'app-search',

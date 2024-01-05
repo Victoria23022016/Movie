@@ -1,27 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, forkJoin, map, of, tap } from 'rxjs';
-
-export interface Genres {
-  id: number;
-  name: string;
-  genres?: any;
-}
-
-export interface Film {
-  adult: boolean;
-  backdrop_path: string;
-  genre_ids: Array<number>;
-  id: number;
-  original_language: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  release_date: string;
-  title: string;
-  vote_average: number;
-  genresToDisplay?: string[];
-}
+import { BehaviorSubject, Observable, forkJoin, map, of, tap } from 'rxjs';
+import { Film, Genres, User } from '../models/models';
+import { AuthService } from './auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class FilmService {
@@ -31,7 +12,10 @@ export class FilmService {
   genres: Genres[] = [];
   popularFilms: Film[];
 
-  constructor(private _http: HttpClient) {}
+  constructor(
+    private _http: HttpClient,
+    private readonly _authService: AuthService
+  ) {}
 
   getGenres(): Observable<Genres[]> {
     if (!this.genres.length) {
@@ -50,6 +34,7 @@ export class FilmService {
       map(([genres, films]) =>
         films.map((film) => {
           this._assignGenres(genres, film);
+
           return film;
         })
       )
@@ -93,28 +78,47 @@ export class FilmService {
   }
 
   parseLocalStorage(favourites: Film[]): Film[] {
-    let localKeys = Object.values(window.localStorage).map((key) =>
-      JSON.parse(key)
-    );
+    const currentUser: User = this._authService.getCurrentUser();
+    const parsedUsers = JSON.parse(window.localStorage['users']);
+    let localKeys = parsedUsers[`${currentUser.email}`].favourites;
+    localKeys = Object.values(localKeys);
     favourites.splice(0, favourites.length, ...localKeys);
     return favourites;
   }
 
   addtoLocalStorage(film: Film): void {
-    if (!window.localStorage.getItem(`${film.id}`)) {
-      window.localStorage[film.id] = JSON.stringify(film);
-    }
+    const currentUser: User = this._authService.getCurrentUser();
+    const parsedUsers = JSON.parse(window.localStorage['users']);
+    parsedUsers[`${currentUser.email}`].favourites[`${film.id}`] = film;
+    this._reassignUsersInLocalStorage(parsedUsers);
   }
 
-  checkLocalStorage(id: number): boolean {
-    return window.localStorage.getItem(`${id}`) ? true : false;
+  checkFavouritesInLocalStorage(): boolean {
+    const currentUser: User = this._authService.getCurrentUser();
+    const parsedUsers = JSON.parse(window.localStorage['users']);
+    return parsedUsers[`${currentUser.email}`].favourites ? true : false;
+  }
+
+  checkFilmInLocalStorage(id: number): boolean {
+    const currentUser: User = this._authService.getCurrentUser();
+    const parsedUsers = JSON.parse(window.localStorage['users']);
+    return parsedUsers[`${currentUser.email}`].favourites[`${id}`]
+      ? true
+      : false;
   }
 
   removefromLocalStorage(id: number): void {
-    window.localStorage.removeItem(`${id}`);
+    const currentUser: User = this._authService.getCurrentUser();
+    const parsedUsers = JSON.parse(window.localStorage['users']);
+    delete parsedUsers[`${currentUser.email}`].favourites[id];
+    this._reassignUsersInLocalStorage(parsedUsers);
   }
 
-  _findGenresById(film: Film, genres: Genres[]): string[] {
+  private _reassignUsersInLocalStorage(parsedUsers: Object): void {
+    window.localStorage['users'] = JSON.stringify(parsedUsers);
+  }
+
+  private _findGenresById(film: Film, genres: Genres[]): string[] {
     const names: string[] = [];
     film.genre_ids.forEach((genre_ids) => {
       names.push(
@@ -124,7 +128,7 @@ export class FilmService {
     return names;
   }
 
-  _assignGenres(genres: Genres[], film: Film) {
+  private _assignGenres(genres: Genres[], film: Film) {
     film.genresToDisplay = this._findGenresById(film, genres);
   }
 }

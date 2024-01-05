@@ -1,11 +1,14 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FilmService, Film } from '../services/film.service';
+import { FilmService } from '../services/film.service';
+import { Film } from '../models/models';
+
 import { Observable, catchError, EMPTY } from 'rxjs';
 
 @Component({
   selector: 'app-detailed-film',
   templateUrl: './detailed-film.component.html',
+  styleUrls: ['./detailed-film.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DetailedFilmComponent implements OnInit {
@@ -26,14 +29,14 @@ export class DetailedFilmComponent implements OnInit {
         this.film$ = this._filmService.getFilmById(+id).pipe(
           catchError((error) => {
             console.error(error);
-
             return EMPTY;
           })
         );
-
-        this.isFavourite = this._filmService.checkLocalStorage(+id)
-          ? true
-          : false;
+        if (this._filmService.checkFavouritesInLocalStorage()) {
+          this.isFavourite = this._filmService.checkFilmInLocalStorage(+id)
+            ? true
+            : false;
+        }
 
         this.reccomendated$ = this._filmService.getReccomendations();
       }

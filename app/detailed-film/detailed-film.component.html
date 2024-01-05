@@ -1,21 +1,62 @@
 <ng-container *ngIf="film$ | async as film">
-  <div appShadowing class="card">
-    <h1 class="card__title">{{ film.title }}</h1>
-    <p class="card__info">Description: {{ film.overview }}</p>
-    <p class="card__info">Rating: {{ film.vote_average }}</p>
-    <p class="card__info">Popularity: {{ film.popularity }}</p>
-    <button
-      class="btn"
-      (click)="addToFavourites(film)"
-      [ngClass]="{
-        btn_activated: isFavourite,
-        btn_notactivated: !isFavourite
-      }"
-    >
-      Add to Favourites
-    </button>
-  </div>
-  <div appShadowing class="card" *ngFor="let film of reccomendated$ | async">
-    <app-film-card [film]="film"></app-film-card>
+  <div class="container">
+    <div class="detailed container__inner">
+      <img
+        class="detailed__image"
+        ngSrc="{{ film.poster_path }}"
+        width="220"
+        height="330"
+        alt="{{ film.title }}"
+      />
+      <div class="detailed detailed__info">
+        <h1 class="detailed_bold">{{ film.title }}</h1>
+        <p>
+          <span class="detailed_bold">Release date:</span>
+          {{ film.release_date | date : "y" }}
+        </p>
+        <p>
+          <span class="detailed_bold">Description:</span>
+          {{ film.overview }}
+        </p>
+        <p>
+          <span class="detailed_bold">Original language:</span>
+          {{ film.original_language | uppercase }}
+        </p>
+        <p>
+          <span class="detailed_bold">Rating:</span>
+          {{ film.vote_average }}
+        </p>
+        <p>
+          <span class="detailed_bold">Popularity:</span>
+          {{ film.popularity }}
+        </p>
+
+        <button
+          class="btn btn__inner"
+          (click)="addToFavourites(film)"
+          [ngClass]="{
+            btn_activated: isFavourite,
+            btn_notactivated: !isFavourite
+          }"
+        >
+          <svg
+            class="btn__icon"
+            xmlns="http://www.w3.org/2000/svg"
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            viewBox="0 0 32 32"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div *ngFor="let film of reccomendated$ | async">
+      <app-film-card-small [film]="film"></app-film-card-small>
+    </div>
   </div>
 </ng-container>

@@ -1,10 +1,23 @@
-<a [routerLink]="['/detailed', film.id]">
-  <h1 class="card__title">{{ film.title }}</h1>
-  <p class="card__info">Description: {{ film.overview }}</p>
-  <p class="card__info">
-    Release date: {{ film.release_date | date : "shortDate" }}
-  </p>
-  <p class="card__genres" *ngFor="let genre of film.genresToDisplay">
-    {{ genre }}
-  </p>
-</a>
+<div class="card card__outer" [routerLink]="['/detailed', film.id]">
+  <div class="card__inner">
+    <img
+      ngSrc="{{ film.poster_path }}"
+      width="215"
+      height="331"
+      alt="{{ film.title }}"
+    />
+    <div class="card__head">
+      <p class="card__title">{{ film.title }}</p>
+    </div>
+    <div class="card__inner_popup">
+      <p class="card__title_popup">{{ film.title }}</p>
+      <p class="card__text_popup">
+        {{ film.release_date | date : "y" }}
+      </p>
+      <div class="card__text_popup">
+        <span *ngFor="let genre of film.genresToDisplay">{{ genre }} </span>
+      </div>
+      <div class="card__text_popup card__info_popup">{{ film.overview }}</div>
+    </div>
+  </div>
+</div>

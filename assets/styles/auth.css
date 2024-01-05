@@ -1,0 +1,29 @@
+.auth {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-family: "Arial", sans-serif;
+  color: var(--medium-grey);
+}
+
+.auth__inner {
+  width: 25rem;
+}
+
+.auth__control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.auth__error {
+  color: var(--red);
+}
+
+.auth__input {
+  border-radius: 0.4rem;
+  padding: 0.2rem;
+  height: 2.8rem;
+  border: var(--light-grey) 0.2rem solid;
+}

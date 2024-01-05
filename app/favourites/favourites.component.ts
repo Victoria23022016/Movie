@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Film } from '../services/film.service';
+import { Film } from '../models/models';
 import { FilmService } from '../services/film.service';
 
 @Component({
@@ -13,7 +13,9 @@ export class FavouritesComponent implements OnInit {
   constructor(private _filmService: FilmService) {}
 
   ngOnInit(): void {
-    this.favourites = this._filmService.parseLocalStorage(this.favourites);
+    if (this._filmService.checkFavouritesInLocalStorage()) {
+      this.favourites = this._filmService.parseLocalStorage(this.favourites);
+    }
   }
 
   removeFromFavourites($event: MouseEvent, film: Film): void {

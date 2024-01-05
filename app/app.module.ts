@@ -13,7 +13,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { FilmCardComponent } from './film-card/film-card.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-film.service';
-import { ShadowingDirective } from './directives/shadowing.directive';
+import { HighlightDirective } from './directives/highlight.directive';
+import { AuthService } from './services/auth.service';
+import { AuthComponent } from './auth/auth.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './auth/auth.guard';
+import { FilmCardSmallComponent } from './film-card-small/film-card-small.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgOptimizedImage } from '@angular/common';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { NzPaginationBasicComponent } from './posts/pagination';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzSpinBasicComponent } from './posts/spin';
 
 @NgModule({
   declarations: [
@@ -25,17 +37,28 @@ import { ShadowingDirective } from './directives/shadowing.directive';
     ErrorComponent,
     HomeComponent,
     FilmCardComponent,
-    ShadowingDirective,
+    HighlightDirective,
+    AuthComponent,
+    LoginComponent,
+    FilmCardSmallComponent,
+    NzPaginationBasicComponent,
+    NzSpinBasicComponent,
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
       dataEncapsulation: false,
     }),
+    BrowserAnimationsModule,
+    NgOptimizedImage,
+    NzPaginationModule,
+    NzSpinModule,
   ],
-  providers: [FilmService],
+  providers: [FilmService, AuthService, AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
