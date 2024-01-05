@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FilmService } from '../services/film.service';
-import { EMPTY, Observable, catchError } from 'rxjs';
+import { EMPTY, Observable, catchError, delay } from 'rxjs';
 import { Film } from '../models/models';
 
 @Component({
