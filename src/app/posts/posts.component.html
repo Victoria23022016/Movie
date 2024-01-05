@@ -1,7 +1,17 @@
 <div class="container">
+  <ng-container>
+    <nz-spin-basic class="container__inner_centred"></nz-spin-basic>
+  </ng-container>
   <div class="grid grid__wrapper">
-    <div *ngFor="let film of popularFilms$ | async">
+    <div *ngFor="let film of getPaginatedFilms(popularFilms$ | async)">
       <app-film-card [film]="film"></app-film-card>
     </div>
   </div>
+  <nz-pagination-basic
+    class="container__inner_centred"
+    [totalFilms]="(popularFilms$ | async)?.length || null"
+    [filmsPerPage]="filmsPerPage"
+    [currentPage]="index"
+    (onClick)="changePage($event)"
+  ></nz-pagination-basic>
 </div>

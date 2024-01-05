@@ -19,9 +19,13 @@ import { AuthComponent } from './auth/auth.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth/auth.guard';
+import { FilmCardSmallComponent } from './film-card-small/film-card-small.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgOptimizedImage } from '@angular/common';
-import { FilmCardSmallComponent } from './film-card-small/film-card-small.component';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { NzPaginationBasicComponent } from './posts/pagination';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzSpinBasicComponent } from './posts/spin';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,8 @@ import { FilmCardSmallComponent } from './film-card-small/film-card-small.compon
     AuthComponent,
     LoginComponent,
     FilmCardSmallComponent,
+    NzPaginationBasicComponent,
+    NzSpinBasicComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +55,8 @@ import { FilmCardSmallComponent } from './film-card-small/film-card-small.compon
     }),
     BrowserAnimationsModule,
     NgOptimizedImage,
+    NzPaginationModule,
+    NzSpinModule,
   ],
   providers: [FilmService, AuthService, AuthGuard],
   bootstrap: [AppComponent],

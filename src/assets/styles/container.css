@@ -9,6 +9,12 @@
   display: flex;
 }
 
+.container__inner_centred {
+  margin: 5rem 0 5rem 0;
+  display: flex;
+  justify-content: center;
+}
+
 .container__inner_column {
   flex-direction: column;
 }

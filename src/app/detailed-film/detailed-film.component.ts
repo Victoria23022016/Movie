@@ -29,7 +29,6 @@ export class DetailedFilmComponent implements OnInit {
         this.film$ = this._filmService.getFilmById(+id).pipe(
           catchError((error) => {
             console.error(error);
-
             return EMPTY;
           })
         );
