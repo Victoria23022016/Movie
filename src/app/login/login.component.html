@@ -6,20 +6,18 @@
         <label>Email:</label>
         <input type="text" formControlName="email" class="auth__input" />
       </div>
-      <ng-container
-        *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
-      >
-        <small class="auth__error">The graph must be filled!</small>
-      </ng-container>
+      @if(form.get('email')?.invalid && form.get('email')?.touched) {
+      <small class="auth__error">The graph must be filled!</small>
+      }
+
       <div class="auth__control">
         <label>Password:</label>
         <input type="password" formControlName="password" class="auth__input" />
       </div>
-      <ng-container
-        *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
-      >
-        <small class="auth__error">The graph must be filled!</small>
-      </ng-container>
+      @if(form.get('password')?.invalid && form.get('password')?.touched) {
+      <small class="auth__error">The graph must be filled!</small>
+      }
+
       <button
         [disabled]="form.invalid"
         (click)="logIn()"

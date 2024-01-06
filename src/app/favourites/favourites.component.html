@@ -1,45 +1,45 @@
 <div class="container">
   <div class="container__inner container__inner_column">
-    <ng-container *ngFor="let film of this.favourites">
-      <div
-        class="card card__inner_favourites"
-        [routerLink]="['/detailed', film.id]"
-        appHighlight
-      >
-        <div class="card__layout_favourites">
-          <img
-            class="card__image"
-            ngSrc="{{ film.poster_path }}"
-            width="42"
-            height="63"
-            alt="{{ film.title }}"
-          />
-          <div class="card__info_small">
-            <p class="card__title_small">{{ film.title }}</p>
-            <p class="card__text_small">
-              {{ film.release_date | date : "y" }}
-            </p>
-          </div>
+    @for(film of this.favourites; track $index){
+    <div
+      class="card card__inner_favourites"
+      [routerLink]="['/detailed', film.id]"
+      appHighlight
+    >
+      <div class="card__layout_favourites">
+        <img
+          class="card__image"
+          ngSrc="{{ film.poster_path }}"
+          width="42"
+          height="63"
+          alt="{{ film.title }}"
+        />
+        <div class="card__info_small">
+          <p class="card__title_small">{{ film.title }}</p>
+          <p class="card__text_small">
+            {{ film.release_date | date : "y" }}
+          </p>
         </div>
-        <button
-          class="btn btn__inner"
-          (click)="removeFromFavourites($event, film)"
+      </div>
+      <button
+        class="btn btn__inner"
+        (click)="removeFromFavourites($event, film)"
+      >
+        <svg
+          class="btn__icon"
+          xmlns="http://www.w3.org/2000/svg"
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          viewBox="0 0 32 32"
         >
-          <svg
-            class="btn__icon"
-            xmlns="http://www.w3.org/2000/svg"
+          <path
             fill-rule="evenodd"
             clip-rule="evenodd"
-            viewBox="0 0 32 32"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M6 32h20l2-22h-24zM20 4v-4h-8v4h-10v6l2-2h24l2 2v-6h-10zM18 4h-4v-2h4v2z"
-            ></path>
-          </svg>
-        </button>
-      </div>
-    </ng-container>
+            d="M6 32h20l2-22h-24zM20 4v-4h-8v4h-10v6l2-2h24l2 2v-6h-10zM18 4h-4v-2h4v2z"
+          ></path>
+        </svg>
+      </button>
+    </div>
+    }
   </div>
 </div>

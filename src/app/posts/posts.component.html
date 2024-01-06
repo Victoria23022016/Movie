@@ -1,9 +1,9 @@
 <div class="container">
   @if(popularFilms$ | async ) {
   <div class="grid grid__wrapper">
-    <div *ngFor="let film of getPaginatedFilms(popularFilms$ | async)">
-      <app-film-card [film]="film"></app-film-card>
-    </div>
+    @for(film of getPaginatedFilms(popularFilms$ | async); track $index) {
+    <app-film-card [film]="film"></app-film-card>
+    }
   </div>
   <nz-pagination-basic
     class="container__inner_centred"

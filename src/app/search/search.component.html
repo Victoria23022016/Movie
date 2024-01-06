@@ -18,8 +18,8 @@
   </svg>
 
   <div class="search__results">
-    <div *ngFor="let film of films$ | async">
-      <app-film-card-small [film]="film"></app-film-card-small>
-    </div>
+    @for(film of films$ | async; track $index) {
+    <app-film-card-small [film]="film"></app-film-card-small>
+    }
   </div>
 </div>
