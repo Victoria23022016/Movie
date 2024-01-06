@@ -15,7 +15,9 @@
         {{ film.release_date | date : "y" }}
       </p>
       <div class="card__text_popup">
-        <span *ngFor="let genre of film.genresToDisplay">{{ genre }} </span>
+        @for(genre of film.genresToDisplay; track $index){
+        <span>{{ genre }} </span>
+        }
       </div>
       <div class="card__text_popup card__info_popup">{{ film.overview }}</div>
     </div>
