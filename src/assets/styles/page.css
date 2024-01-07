@@ -9,6 +9,14 @@
   background: var(--white-2);
 }
 
+.main__text {
+  font-family: "Arial", sans-serif;
+  font-weight: normal;
+  color: var(--medium-grey);
+  font-size: 2rem;
+  margin-top: 2rem;
+}
+
 .header {
   background-color: var(--dark-grey);
   vertical-align: middle;

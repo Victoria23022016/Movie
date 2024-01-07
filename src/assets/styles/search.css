@@ -4,12 +4,16 @@
   font-weight: lighter;
 }
 
+.search__outer {
+  margin-top: 50px;
+}
+
 .search__inner {
-  width: 20rem;
+  width: 120rem;
 }
 
 .search__input {
-  background: var(--medium-grey);
+  background: var(--white-3);
   border: none;
   width: 100%;
   border-radius: 0.4rem;
@@ -35,7 +39,7 @@
 .search__icon {
   width: 1.8rem;
   height: 1.8rem;
-  fill: var(--white-3);
+  fill: var(--medium-grey);
   position: absolute;
   top: 0.5rem;
   left: 0.5rem;

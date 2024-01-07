@@ -22,7 +22,6 @@ import { Film } from '../models/models';
 })
 export class SearchComponent implements OnInit {
   private _searchTerms = new Subject<string>();
-
   films$: Observable<Film[]>;
 
   constructor(private readonly _filmService: FilmService) {}
