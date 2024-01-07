@@ -20,7 +20,7 @@
     "@angular/router": "^17.0.8",
     "angular-cli-ghpages": "^1.0.7",
     "angular-in-memory-web-api": "^0.17.0",
-    "ng-zorro-antd": "^17.2.2",
+    "ng-zorro-antd": "^17.1.0",
     "rxjs": "~7.8.0",
     "save-dev": "^0.0.1-security",
     "tslib": "^2.3.0",
