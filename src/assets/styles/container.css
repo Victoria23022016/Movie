@@ -9,12 +9,12 @@
   display: flex;
 }
 
-.container__inner_centred {
+.container__inner_minor {
   margin: 5rem 0 5rem 0;
   display: flex;
   justify-content: center;
 }
 
-.container__inner_column {
+.container__inner_favourites {
   flex-direction: column;
 }
