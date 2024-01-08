@@ -8,7 +8,6 @@ import { Observable, catchError, EMPTY } from 'rxjs';
 @Component({
   selector: 'app-detailed-film',
   templateUrl: './detailed-film.component.html',
-  styleUrls: ['./detailed-film.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DetailedFilmComponent implements OnInit {
