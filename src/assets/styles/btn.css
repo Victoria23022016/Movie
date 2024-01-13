@@ -27,16 +27,12 @@
   fill: var(--white);
 }
 
-.btn_activated {
-  pointer-events: none;
-  background: var(--light-grey);
-}
-.btn_notactivated {
-  pointer-events: all;
-}
-
 .btn__inner {
   width: 10rem;
   height: 4rem;
+  align-self: flex-start;
+}
+
+.btn__inner_small {
   align-self: center;
 }

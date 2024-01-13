@@ -6,6 +6,7 @@
         <label>Email:</label>
         <input type="text" formControlName="email" class="auth__input" />
       </div>
+
       @if(form.get('email')?.invalid && form.get('email')?.touched) {
       <small class="auth__error">The graph must be filled!</small>
       }
@@ -14,6 +15,7 @@
         <label>Password:</label>
         <input type="password" formControlName="password" class="auth__input" />
       </div>
+
       @if(form.get('password')?.invalid && form.get('password')?.touched) {
       <small class="auth__error">The graph must be filled!</small>
       }

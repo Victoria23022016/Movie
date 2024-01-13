@@ -1,16 +1,14 @@
-<div class="container">
-  @if(popularFilms$ | async ) {
-  <div class="grid grid__wrapper">
-    @for(film of getPaginatedFilms(popularFilms$ | async); track $index) {
-    <app-film-card [film]="film"></app-film-card>
-    }
-  </div>
-  <nz-pagination-basic
-    class="container__inner_minor"
-    [totalFilms]="(popularFilms$ | async)?.length || null"
-    [filmsPerPage]="filmsPerPage"
-    [currentPage]="index"
-    (onClick)="changePage($event)"
-  ></nz-pagination-basic>
-  } @else {<nz-spin-basic class="container__inner_minor"></nz-spin-basic>}
+@if(popularFilms$ | async ) {
+<div class="grid grid__wrapper">
+  @for(film of getPaginatedFilms(popularFilms$ | async); track $index) {
+  <app-film-card [film]="film"></app-film-card>
+  }
 </div>
+<nz-pagination-basic
+  class="container__inner_minor"
+  [totalFilms]="(popularFilms$ | async)?.length || null"
+  [filmsPerPage]="filmsPerPage"
+  [currentPage]="index"
+  (onClick)="changePage($event)"
+></nz-pagination-basic>
+} @else {<nz-spin-basic class="container__inner_minor"></nz-spin-basic>}

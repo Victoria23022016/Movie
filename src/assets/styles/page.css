@@ -48,10 +48,12 @@
   color: var(--white);
 }
 
+.navbar__link:focus {
+  outline: none;
+}
+
 .navbar__link_active {
-  font-weight: bold;
-  color: var(--main-font);
-  cursor: default;
+  pointer-events: none;
 }
 
 .navbar__icon {

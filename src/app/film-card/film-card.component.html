@@ -1,14 +1,18 @@
 <div class="card card__outer" [routerLink]="['/detailed', film.id]">
   <div class="card__inner">
-    <img
-      ngSrc="{{ film.poster_path }}"
-      width="215"
-      height="331"
-      alt="{{ film.title }}"
-    />
+    <div class="card__image">
+      <img
+        ngSrc="{{ film.poster_path }}"
+        alt="{{ film.title }}"
+        fill="true"
+        priority="true"
+      />
+    </div>
+
     <div class="card__head">
       <p class="card__title">{{ film.title }}</p>
     </div>
+
     <div class="card__inner_popup">
       <p class="card__title_popup">{{ film.title }}</p>
       <p class="card__text_popup">
@@ -19,7 +23,8 @@
         <span>{{ genre }} </span>
         }
       </div>
-      <div class="card__text_popup card__info_popup">{{ film.overview }}</div>
+
+      <p class="card__text_popup card__info_popup">{{ film.overview }}</p>
     </div>
   </div>
 </div>

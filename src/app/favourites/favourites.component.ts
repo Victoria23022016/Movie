@@ -22,6 +22,6 @@ export class FavouritesComponent implements OnInit {
     $event.preventDefault();
     $event.stopPropagation();
     this._filmService.removefromLocalStorage(film.id);
-    this._filmService.parseLocalStorage(this.favourites);
+    this.favourites = this._filmService.parseLocalStorage(this.favourites);
   }
 }

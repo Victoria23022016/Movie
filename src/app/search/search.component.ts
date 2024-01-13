@@ -21,13 +21,17 @@ import { Film } from '../models/models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchComponent implements OnInit {
+  @ViewChild('searchBox') searchBox: HTMLInputElement;
+
   private _searchTerms = new Subject<string>();
   films$: Observable<Film[]>;
+  searchInput: boolean = false;
+  term: string = '';
 
   constructor(private readonly _filmService: FilmService) {}
 
-  search(term: string): void {
-    this._searchTerms.next(term);
+  search(): void {
+    this._searchTerms.next(this.term);
   }
 
   ngOnInit(): void {
@@ -36,5 +40,14 @@ export class SearchComponent implements OnInit {
       distinctUntilChanged(),
       mergeMap((term: string) => this._filmService.searchFilm(term))
     );
+  }
+
+  showInput(): void {
+    this.searchInput = true;
+  }
+
+  hideInput(): void {
+    this.searchInput = false;
+    this.term = '';
   }
 }

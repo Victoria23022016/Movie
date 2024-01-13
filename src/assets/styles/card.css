@@ -48,7 +48,19 @@
   word-wrap: break-word;
 }
 
+.card__image-wrapper_small {
+  width: 4.2rem;
+  height: 6.3rem;
+  position: relative;
+}
+
 .card__image {
+  width: 21.5rem;
+  height: 33.1rem;
+  position: relative;
+}
+
+.card__image_small {
   border-radius: 0.2rem;
 }
 
