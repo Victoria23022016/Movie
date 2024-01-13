@@ -9,6 +9,12 @@
   font-weight: bold;
 }
 
+.detailed__image-wrapper {
+  width: 22rem;
+  height: 33rem;
+  position: relative;
+}
+
 .detailed__image {
   border-radius: 0.4rem;
 }

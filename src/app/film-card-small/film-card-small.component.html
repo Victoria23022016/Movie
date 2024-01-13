@@ -3,13 +3,14 @@
   [routerLink]="['/detailed', film.id]"
   appHighlight
 >
-  <img
-    class="card__image"
-    ngSrc="{{ film.poster_path }}"
-    width="42"
-    height="63"
-    alt="{{ film.title }}"
-  />
+  <div class="card__image-wrapper_small">
+    <img
+      class="card__image_small"
+      ngSrc="{{ film.poster_path }}"
+      alt="{{ film.title }}"
+      fill="true"
+    />
+  </div>
 
   <div class="card__info_small">
     <p class="card__title_small">{{ film.title }}</p>

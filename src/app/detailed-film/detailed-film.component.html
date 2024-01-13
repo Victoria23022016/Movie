@@ -1,13 +1,16 @@
 <ng-container *ngIf="film$ | async as film">
   <div class="container">
     <div class="detailed container__inner">
-      <img
-        class="detailed__image"
-        ngSrc="{{ film.poster_path }}"
-        width="220"
-        height="330"
-        alt="{{ film.title }}"
-      />
+      <div class="detailed__image-wrapper">
+        <img
+          class="detailed__image"
+          ngSrc="{{ film.poster_path }}"
+          alt="{{ film.title }}"
+          fill="true"
+          priority="true"
+        />
+      </div>
+
       <div class="detailed detailed__info">
         <h1 class="detailed_bold">{{ film.title }}</h1>
         <p>
@@ -34,10 +37,7 @@
         <button
           class="btn btn__inner"
           (click)="addToFavourites(film)"
-          [ngClass]="{
-            btn_activated: isFavourite,
-            btn_notactivated: !isFavourite
-          }"
+          *ngIf="!isFavourite; else DeleteFavourite"
         >
           <svg
             class="btn__icon"
@@ -53,6 +53,26 @@
             ></path>
           </svg>
         </button>
+        <ng-template #DeleteFavourite>
+          <button
+            class="btn btn__inner"
+            (click)="removeFromFavourites(film.id)"
+          >
+            <svg
+              class="btn__icon"
+              xmlns="http://www.w3.org/2000/svg"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              viewBox="0 0 32 32"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M6 32h20l2-22h-24zM20 4v-4h-8v4h-10v6l2-2h24l2 2v-6h-10zM18 4h-4v-2h4v2z"
+              ></path>
+            </svg>
+          </button>
+        </ng-template>
       </div>
     </div>
     <div *ngFor="let film of reccomendated$ | async">

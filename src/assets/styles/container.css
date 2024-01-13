@@ -18,3 +18,8 @@
 .container__inner_transparent {
   flex-direction: column;
 }
+@media (max-width: 1200px) {
+  .container {
+    margin: 0 1.5rem;
+  }
+}

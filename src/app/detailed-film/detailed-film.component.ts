@@ -46,4 +46,9 @@ export class DetailedFilmComponent implements OnInit {
     this._filmService.addtoLocalStorage(film);
     this.isFavourite = true;
   }
+
+  removeFromFavourites(id: number): void {
+    this._filmService.removefromLocalStorage(id);
+    this.isFavourite = false;
+  }
 }
