@@ -43,7 +43,11 @@ export class AuthService {
   }
 
   checkCurrentUser(): boolean {
-    return JSON.parse(window.localStorage['currentUser']) ? true : false;
+    if (window.localStorage) {
+      return JSON.parse(window.localStorage['currentUser']) ? true : false;
+    } else {
+      return false;
+    }
   }
 
   checkUser(email: string): boolean {

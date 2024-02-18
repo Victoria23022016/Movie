@@ -6,28 +6,26 @@
         <label>Email:</label>
         <input type="text" formControlName="email" class="auth__input" />
       </div>
-
-      @if(form.get('email')?.invalid && form.get('email')?.touched){
-      @if(form.get('email')?.errors?.['required']){
+      @if(email) { @if(email.invalid && email.touched){
+      @if(email.errors?.['required']){
       <small class="auth__error">The graph must be filled!</small>
-      } @if(form.get('email')?.errors?.['email']){
+      } @if(email.errors?.['email']){
       <small class="auth__error">This email is not correct!</small>
-      } @if(form.get('email')?.errors?.['takenEmail']){
+      } @if(email.errors?.['takenEmail']){
       <small class="auth__error">This email is already taken!</small>
-      } }
+      } } }
 
       <div class="auth__control">
         <label>Password:</label>
         <input type="password" formControlName="password" class="auth__input" />
       </div>
-
-      @if(form.get('password')?.invalid && form.get('password')?.touched){
-      @if(form.get('password')?.errors?.['required']){<small class="auth__error"
+      @if(password) { @if(password.invalid && password.touched){
+      @if(password.errors?.['required']){<small class="auth__error"
         >The graph must be filled!</small
-      >} @if(form.get('password')?.errors?.['minlength']){
+      >} @if(password.errors?.['minlength']){
       <small class="auth__error"
         >the password must include at least 5 symbols!</small
-      >} }
+      >} } }
 
       <button
         [disabled]="form.invalid"
