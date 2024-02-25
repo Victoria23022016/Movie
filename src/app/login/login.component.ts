@@ -1,5 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  Validators,
+  FormBuilder,
+  AbstractControl,
+} from '@angular/forms';
 import { User } from '../models/models';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
@@ -15,14 +21,23 @@ export class LoginComponent {
 
   constructor(
     private readonly _authService: AuthService,
-    private readonly _router: Router
+    private readonly _router: Router,
+    private readonly _formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
-    this.form = new FormGroup({
-      email: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+    this.form = this._formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required],
     });
+  }
+
+  get email(): AbstractControl | null {
+    return this.form.get('email');
+  }
+
+  get password(): AbstractControl | null {
+    return this.form.get('password');
   }
 
   logIn(): void {
